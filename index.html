@@ -3,9 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>About Me</title>
+
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: black;
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: rgb(136, 255, 0);
+            padding: 15px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+        }
+
+        .navbar a {
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 25px;
+            font-size: 16px;
+        }
+
+        .navbar a:hover {
+            color: white;
         }
 
         .container {
@@ -43,7 +69,13 @@
     </style>
 </head>
 
-<body>
+<body id="home">
+
+<div class="navbar">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#hobbies">Hobbies</a>
+</div>
 
 <div class="container">
 
@@ -57,7 +89,7 @@
 
     <hr>
 
-    <div class="aboutMe">
+    <div class="aboutMe" id="about">
         <h3>About Me</h3>
         <p>I'm Dan, 20 years old. I’m a simple and easygoing person who enjoys
         spending time doing the things I love. I value honesty, respect, and
@@ -65,9 +97,9 @@
         to grow both personally and academically.</p>
     </div>
 
-    <div class="hobbies">
+    <div class="hobbies" id="hobbies">
         <h3>Hobbies</h3>
-        <p>I enjoy coding, gaming, working out, making various forms of art. </p>
+        <p>I enjoy coding, gaming, working out, making various forms of art.</p>
     </div>
 
 </div>
