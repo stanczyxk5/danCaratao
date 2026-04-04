@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS Button Practice</title>
+
+<style>
+body{
+    font-family: Arial;
+    background:#0b0f0c;
+    color:#00ff66;
+    margin:20px;
+}
+
+h1{
+    text-align:center;
+    color:#00ff66;
+}
+
+section{
+    border:1px solid #00ff66;
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:8px;
+    background:#111814;
+}
+
+button{
+    background:#00ff66;
+    color:black;
+    border:none;
+    padding:8px 12px;
+    margin:5px 0;
+    cursor:pointer;
+    border-radius:4px;
+}
+
+input{
+    padding:6px;
+    margin:5px 0;
+    width:200px;
+}
+
+.output{
+    margin-top:8px;
+    padding:8px;
+    background:#000;
+    border:1px solid #00ff66;
+}
+</style>
+</head>
+
+<body>
+
+<h1>JavaScript Button Activities</h1>
+
+<section>
+<h3>1. Alert Button</h3>
+<button onclick="alert('Hello BSCS1D')">Click Alert</button>
+</section>
+
+<section>
+<h3>2. Function Button</h3>
+<button onclick="msgFunc()">Run Function</button>
+<div class="output" id="out1"></div>
+</section>
+
+<section>
+<h3>3. Change Text</h3>
+<p id="text1">Original Text</p>
+<button onclick="changeTxt()">Change</button>
+</section>
+
+<section>
+<h3>4. Counter</h3>
+<p>Count: <span id="count1">0</span></p>
+<button onclick="addCount()">Add</button>
+</section>
+
+<section>
+<h3>5. Input Name</h3>
+<input id="name1" placeholder="Enter name">
+<button onclick="greet()">Submit</button>
+<div class="output" id="out2"></div>
+</section>
+
+<section>
+<h3>6. Age Check</h3>
+<input id="age1" type="number" placeholder="Age">
+<button onclick="check()">Check</button>
+<div class="output" id="out3"></div>
+</section>
+
+<section>
+<h3>7. Math Operations</h3>
+<input id="n1" type="number" placeholder="A">
+<input id="n2" type="number" placeholder="B"><br>
+<button onclick="add()">Add</button>
+<button onclick="sub()">Sub</button>
+<button onclick="mul()">Mul</button>
+<div class="output" id="math"></div>
+</section>
+
+<section>
+<h3>8. Toggle Light</h3>
+<div id="box" style="padding:10px;background:#333;">OFF</div>
+<button onclick="toggle()">Switch</button>
+</section>
+
+<section>
+<h3>9. Loop</h3>
+<button onclick="loop()">Generate</button>
+<button onclick="clearList()">Clear</button>
+<ul id="list"></ul>
+</section>
+
+<section>
+<h3>10. Final Demo</h3>
+<button onclick="showVar()">Variables</button>
+<button onclick="calc()">Compute</button>
+<input id="grade" type="number" placeholder="Score">
+<button onclick="gradeCheck()">Grade</button>
+<button onclick="greetFinal()">Greet</button>
+<div class="output" id="final"></div>
+</section>
+
+<script>
+
+let count = 0;
+let light = false;
+
+function msgFunc(){
+    document.getElementById("out1").innerHTML = "Function executed";
+}
+
+function changeTxt(){
+    document.getElementById("text1").innerHTML =
+    "Changed at " + new Date().toLocaleTimeString();
+}
+
+function addCount(){
+    count++;
+    document.getElementById("count1").innerHTML = count;
+}
+
+function greet(){
+    let name = document.getElementById("name1").value;
+    if(name === "") name = "Guest";
+    document.getElementById("out2").innerHTML = "Hello " + name;
+}
+
+function check(){
+    let age = document.getElementById("age1").value;
+    let res = (age >= 18) ? "Adult" : "Minor";
+    document.getElementById("out3").innerHTML = res;
+}
+
+function add(){
+    let a = Number(document.getElementById("n1").value);
+    let b = Number(document.getElementById("n2").value);
+    document.getElementById("math").innerHTML = a + b;
+}
+
+function sub(){
+    let a = Number(document.getElementById("n1").value);
+    let b = Number(document.getElementById("n2").value);
+    document.getElementById("math").innerHTML = a - b;
+}
+
+function mul(){
+    let a = Number(document.getElementById("n1").value);
+    let b = Number(document.getElementById("n2").value);
+    document.getElementById("math").innerHTML = a * b;
+}
+
+function toggle(){
+    light = !light;
+    let box = document.getElementById("box");
+
+    if(light){
+        box.innerHTML = "ON";
+        box.style.background = "#00ff66";
+        box.style.color = "black";
+    }else{
+        box.innerHTML = "OFF";
+        box.style.background = "#333";
+        box.style.color = "#00ff66";
+    }
+}
+
+function loop(){
+    let list = document.getElementById("list");
+    list.innerHTML = "";
+    for(let i=1;i<=5;i++){
+        list.innerHTML += "<li>Item " + i + "</li>";
+    }
+}
+
+function clearList(){
+    document.getElementById("list").innerHTML = "";
+}
+
+function showVar(){
+    document.getElementById("final").innerHTML =
+    "Counter: " + count;
+}
+
+function calc(){
+    let a = 10, b = 5;
+    document.getElementById("final").innerHTML = a + b;
+}
+
+function gradeCheck(){
+    let s = document.getElementById("grade").value;
+    let g;
+
+    if(s >= 90) g="A";
+    else if(s >= 80) g="B";
+    else if(s >= 70) g="C";
+    else if(s >= 60) g="D";
+    else g="F";
+
+    document.getElementById("final").innerHTML = g;
+}
+
+function greetFinal(){
+    let name = prompt("Enter name:");
+    if(name){
+        document.getElementById("final").innerHTML = "Hi " + name;
+    }
+}
+
+</script>
+
+</body>
+</html>
