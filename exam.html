@@ -5,72 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Exam Uploads</title>
 
+<link rel="stylesheet" href="navbar.css">
+
 <style>
 body {
     background: linear-gradient(135deg, #000000, #1a1a1a);
     margin: 0;
     font-family: Arial, sans-serif;
-}
-
-/* ===== NAVBAR ===== */
-.navbar {
-    position: sticky;
-    top: 0;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 10px 20px;
-    background: #0a0a0a;
-    border-bottom: 2px solid #88ff00;
-    z-index: 1000;
-}
-
-.menu-btn {
-    display: block;
-    background: none;
-    border: 1px solid #88ff00;
-    color: #88ff00;
-    padding: 4px 8px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-.nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 55px;
-    right: 20px;
-    background: #111;
-    border: 1px solid #88ff00;
-    border-radius: 6px;
-    width: 160px;
-    padding: 10px;
-}
-
-.nav-links a {
-    color: #bbffc1;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 8px;
-    text-align: center;
-    border-radius: 4px;
-    transition: 0.3s;
-}
-
-.nav-links a:hover {
-    background: #88ff00;
-    color: #000;
-}
-
-.nav-links a.active {
-    background: #88ff00;
-    color: #000;
-}
-
-.nav-links.show {
-    display: flex;
 }
 
 /* ===== CONTENT ===== */
@@ -138,6 +79,7 @@ h1 {
 
 <body>
 
+<!-- NAVBAR -->
 <div class="navbar">
     <button class="menu-btn" onclick="toggleMenu()">Menu</button>
 
@@ -154,15 +96,15 @@ h1 {
 
 <div class="grid">
 
-<div class="card">
-    <img src="qImages/200.gif" alt="Midterms">
-    <p>Midterm Exam</p>
-</div>
+    <div class="card">
+        <img src="qImages/200.gif" alt="Midterms">
+        <p>Midterm Exam</p>
+    </div>
 
-<div class="card">
-    <img src="qImages/black.gif" alt="Finals">
-    <p>Final Exam</p>
-</div>
+    <div class="card">
+        <img src="qImages/black.gif" alt="Finals">
+        <p>Final Exam</p>
+    </div>
 
 </div>
 
@@ -174,12 +116,7 @@ h1 {
     — <span style="font-size: 18px; font-style: italic;">Jarreth Delminguez</span>
 </div>
 
-<script>
-function toggleMenu() {
-    const nav = document.getElementById("navLinks");
-    nav.classList.toggle("show");
-}
-</script>
+<script src="navbar.js"></script>
 
 </body>
 </html>
