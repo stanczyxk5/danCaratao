@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Laboratory</title>
 
 <style>
@@ -26,7 +27,7 @@ body {
 }
 
 .menu-btn {
-    display: none;
+    display: block;
     background: none;
     border: 1px solid #88ff00;
     color: #88ff00;
@@ -37,28 +38,42 @@ body {
 }
 
 .nav-links {
-    display: flex;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 55px;
+    right: 20px;
+    background: #111;
+    border: 1px solid #88ff00;
+    border-radius: 6px;
+    width: 160px;
+    padding: 10px;
 }
 
 .nav-links a {
-    margin-left: 15px;
     color: #bbffc1;
     text-decoration: none;
     font-weight: bold;
-    padding: 5px 10px;
+    padding: 8px;
+    text-align: center;
     border-radius: 4px;
     transition: 0.3s;
 }
 
 .nav-links a:hover {
-    background-color: #88ff00;
+    background: #88ff00;
     color: #000;
 }
 
 .nav-links a.active {
-    background-color: #88ff00;
+    background: #88ff00;
     color: #000;
 }
+
+.nav-links.show {
+    display: flex;
+}
+
 
 h1 {
     text-align: center;
@@ -66,7 +81,7 @@ h1 {
     margin-top: 30px;
 }
 
-/* WRAPPER */
+
 .wrapper {
     display: flex;
     gap: 20px;
@@ -75,7 +90,7 @@ h1 {
     padding: 10px;
 }
 
-/* COLUMNS */
+
 .col {
     flex: 1;
     display: flex;
@@ -123,32 +138,6 @@ h1 {
 }
 
 @media (max-width: 700px) {
-    .menu-btn {
-        display: block;
-    }
-
-    .nav-links {
-        position: absolute;
-        top: 55px;
-        right: 20px;
-        background: #111;
-        border: 1px solid #88ff00;
-        border-radius: 6px;
-        display: none;
-        flex-direction: column;
-        width: 160px;
-        padding: 10px;
-    }
-
-    .nav-links a {
-        margin: 5px 0;
-        text-align: center;
-    }
-
-    .nav-links.show {
-        display: flex;
-    }
-
     .wrapper {
         flex-direction: column;
     }
@@ -224,10 +213,7 @@ h1 {
 <script>
 function toggleMenu() {
     const nav = document.getElementById("navLinks");
-    const btn = document.querySelector(".menu-btn");
-
     nav.classList.toggle("show");
-    btn.textContent = nav.classList.contains("show") ? "Close" : "Menu";
 }
 </script>
 
