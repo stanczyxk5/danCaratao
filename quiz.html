@@ -1,119 +1,173 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Quiz</title>
-
+<meta charset="UTF-8">
+<title>Quiz</title>
 
 <style>
-    body {
-        background: linear-gradient(135deg, #000000, #1a1a1a);
-        margin: 0;
-        font-family: Arial, sans-serif;
+body {
+    background: linear-gradient(135deg, #000000, #1a1a1a);
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 20px;
+    background: #0a0a0a;
+    border-bottom: 2px solid #88ff00;
+    z-index: 1000;
+}
+
+.menu-btn {
+    display: none;
+    background: none;
+    border: 1px solid #88ff00;
+    color: #88ff00;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-links a {
+    margin-left: 15px;
+    color: #bbffc1;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #88ff00;
+    color: #000;
+}
+
+.nav-links a.active {
+    background-color: #88ff00;
+    color: #000;
+}
+
+/* ===== CONTENT ===== */
+h1 {
+    text-align: center;
+    color: rgb(136, 255, 0);
+    margin: 30px 0;
+    text-shadow: 0 0 10px rgb(136, 255, 0);
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 40px;
+}
+
+.card {
+    background: #2c2c2c;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgb(136, 255, 0);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card p {
+    padding: 10px;
+    text-align: center;
+    color: #bbffc1;
+    font-weight: bold;
+}
+
+/* ===== MODAL ===== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 700px) {
+    .menu-btn {
+        display: block;
     }
 
-    
-    .navbar {
-        background-color: rgb(136, 255, 0);
-        padding: 15px 0;
-        text-align: center;
-        position: sticky;
-        top: 0;
-        box-shadow: 0 0 10px rgb(136, 255, 0);
-    }
-
-    .navbar a {
-        color: black;
-        text-decoration: none;
-        font-weight: bold;
-        margin: 0 25px;
-        font-size: 16px;
-    }
-
-    .navbar a:hover {
-        color: white;
-    }
-
-    h1 {
-        text-align: center;
-        color: rgb(136, 255, 0);
-        margin: 30px 0;
-        text-shadow: 0 0 10px rgb(136, 255, 0);
-    }
-
-    
-    .gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 25px;
-        padding: 40px;
-    }
-
-    .card {
-        background: #2c2c2c;
-        border-radius: 15px;
-        overflow: hidden;
-        transition: 0.3s;
-        cursor: pointer;
-    }
-
-    .card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 15px rgb(136, 255, 0);
-    }
-
-    .card img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-    }
-
-    .card p {
-        padding: 10px;
-        text-align: center;
-        color: #bbffc1;
-        font-weight: bold;
-    }
-
-    
-    .modal {
+    .nav-links {
+        position: absolute;
+        top: 55px;
+        right: 20px;
+        background: #111;
+        border: 1px solid #88ff00;
+        border-radius: 6px;
         display: none;
-        position: fixed;
-        z-index: 10;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.9);
-        justify-content: center;
-        align-items: center;
+        flex-direction: column;
+        width: 160px;
+        padding: 10px;
     }
 
-    .modal img {
-        max-width: 90%;
-        max-height: 90%;
-        border-radius: 10px;
+    .nav-links a {
+        margin: 5px 0;
+        text-align: center;
     }
+
+    .nav-links.show {
+        display: flex;
+    }
+}
 </style>
-
-
 </head>
 
 <body>
 
 <div class="navbar">
-    <a href="index.html">Home</a>
-    <a href="dashboard.html">Dashboard</a>
-    <a href="quiz.html">Quiz</a>
-    <a href="lab.html">Laboratory</a>
-    <a href="exam.html">Exam</a>
+    <button class="menu-btn" onclick="toggleMenu()">Menu</button>
+
+    <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="quiz.html" class="active">Quiz</a>
+        <a href="lab.html">Laboratory</a>
+        <a href="exam.html">Exam</a>
+    </div>
 </div>
 
 <h1>Quiz</h1>
 
 <div class="gallery">
-
 
 <div class="card" onclick="openModal(this)">
     <img src="qImages/quiz1.jpg" alt="Quiz 1">
@@ -147,6 +201,14 @@
 </div>
 
 <script>
+function toggleMenu() {
+    const nav = document.getElementById("navLinks");
+    const btn = document.querySelector(".menu-btn");
+
+    nav.classList.toggle("show");
+    btn.textContent = nav.classList.contains("show") ? "Close" : "Menu";
+}
+
 function openModal(card) {
     const img = card.querySelector("img").src;
     document.getElementById("modalImg").src = img;
