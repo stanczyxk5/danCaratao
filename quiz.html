@@ -5,73 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quiz</title>
 
+<link rel="stylesheet" href="navbar.css">
+
 <style>
 body {
     background: linear-gradient(135deg, #000000, #1a1a1a);
     margin: 0;
     font-family: Arial, sans-serif;
-}
-
-/* ===== NAVBAR ===== */
-.navbar {
-    position: sticky;
-    top: 0;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 10px 20px;
-    background: #0a0a0a;
-    border-bottom: 2px solid #88ff00;
-    z-index: 1000;
-}
-
-/* ALWAYS visible button (important fix) */
-.menu-btn {
-    display: block;
-    background: none;
-    border: 1px solid #88ff00;
-    color: #88ff00;
-    padding: 4px 8px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-.nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 55px;
-    right: 20px;
-    background: #111;
-    border: 1px solid #88ff00;
-    border-radius: 6px;
-    width: 160px;
-    padding: 10px;
-}
-
-.nav-links a {
-    color: #bbffc1;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 8px;
-    text-align: center;
-    border-radius: 4px;
-    transition: 0.3s;
-}
-
-.nav-links a:hover {
-    background: #88ff00;
-    color: #000;
-}
-
-.nav-links a.active {
-    background: #88ff00;
-    color: #000;
-}
-
-.nav-links.show {
-    display: flex;
 }
 
 /* ===== CONTENT ===== */
@@ -139,6 +79,7 @@ h1 {
 
 <body>
 
+<!-- NAVBAR -->
 <div class="navbar">
     <button class="menu-btn" onclick="toggleMenu()">Menu</button>
 
@@ -155,30 +96,30 @@ h1 {
 
 <div class="gallery">
 
-<div class="card" onclick="openModal(this)">
-    <img src="qImages/quiz1.jpg" alt="Quiz 1">
-    <p>Quiz 1</p>
-</div>
+    <div class="card" onclick="openModal(this)">
+        <img src="qImages/quiz1.jpg" alt="Quiz 1">
+        <p>Quiz 1</p>
+    </div>
 
-<div class="card" onclick="openModal(this)">
-    <img src="qImages/quiz2.jpg" alt="Quiz 2">
-    <p>Quiz 2</p>
-</div>
+    <div class="card" onclick="openModal(this)">
+        <img src="qImages/quiz2.jpg" alt="Quiz 2">
+        <p>Quiz 2</p>
+    </div>
 
-<div class="card" onclick="openModal(this)">
-    <img src="qImages/quiz3.1.jpg" alt="Quiz 3.1">
-    <p>Quiz 3.1</p>
-</div>
+    <div class="card" onclick="openModal(this)">
+        <img src="qImages/quiz3.1.jpg" alt="Quiz 3.1">
+        <p>Quiz 3.1</p>
+    </div>
 
-<div class="card" onclick="openModal(this)">
-    <img src="qImages/quiz3.2.jpg" alt="Quiz 3.2">
-    <p>Quiz 3.2</p>
-</div>
+    <div class="card" onclick="openModal(this)">
+        <img src="qImages/quiz3.2.jpg" alt="Quiz 3.2">
+        <p>Quiz 3.2</p>
+    </div>
 
-<div class="card" onclick="openModal(this)">
-    <img src="qImages/carousel.jpg" alt="Carousel">
-    <p>Carousel</p>
-</div>
+    <div class="card" onclick="openModal(this)">
+        <img src="qImages/carousel.jpg" alt="Carousel">
+        <p>Carousel</p>
+    </div>
 
 </div>
 
@@ -186,12 +127,9 @@ h1 {
     <img id="modalImg">
 </div>
 
-<script>
-function toggleMenu() {
-    const nav = document.getElementById("navLinks");
-    nav.classList.toggle("show");
-}
+<script src="navbar.js"></script>
 
+<script>
 function openModal(card) {
     const img = card.querySelector("img").src;
     document.getElementById("modalImg").src = img;
