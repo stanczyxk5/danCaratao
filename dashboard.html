@@ -17,17 +17,51 @@ body {
 }
 
 .navbar {
-    background: #88ff00;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 20px;
+    background: #0a0a0a;
+    border-bottom: 2px solid #88ff00;
     width: 100%;
-    padding: 12px;
-    text-align: center;
+    z-index: 1000;
 }
 
-.navbar a {
-    color: #000;
+.menu-btn {
+    display: none;
+    background: none;
+    border: 1px solid #88ff00;
+    color: #88ff00;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-links a {
+    margin-left: 15px;
+    color: #bbffc1;
     text-decoration: none;
-    margin: 0 15px;
     font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #88ff00;
+    color: #000;
+}
+
+.nav-links a.active {
+    background-color: #88ff00;
+    color: #000;
 }
 
 .container {
@@ -41,7 +75,6 @@ h1 {
     color: #88ff00;
 }
 
-
 .panel {
     display: flex;
     gap: 20px;
@@ -50,14 +83,12 @@ h1 {
     justify-content: center;
 }
 
-
 .main {
     flex: 2;
     background: #111;
     border: 3px solid #88ff00;
     padding: 50px 30px;
     border-radius: 12px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -76,7 +107,6 @@ h1 {
     margin-top: 10px;
     letter-spacing: 1px;
 }
-
 
 .side {
     flex: 1;
@@ -103,17 +133,53 @@ h1 {
     margin: 5px 0 0 0;
     font-size: 14px;
 }
+
+@media (max-width: 700px) {
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 55px;
+        right: 20px;
+        background: #111;
+        border: 1px solid #88ff00;
+        border-radius: 6px;
+        display: none;
+        flex-direction: column;
+        width: 160px;
+        padding: 10px;
+    }
+
+    .nav-links a {
+        margin: 5px 0;
+        text-align: center;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .panel {
+        flex-direction: column;
+    }
+}
 </style>
 </head>
 
 <body>
 
 <div class="navbar">
-    <a href="index.html">Home</a>
-    <a href="dashboard.html">Dashboard</a>
-     <a href="quiz.html">Quiz</a>
-     <a href="lab.html">Laboratory</a>
-     <a href="exam.html">Exam</a>
+    <button class="menu-btn" onclick="toggleMenu()">Menu</button>
+
+    <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html" class="active">Dashboard</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="lab.html">Laboratory</a>
+        <a href="exam.html">Exam</a>
+    </div>
 </div>
 
 <div class="container">
@@ -147,6 +213,16 @@ h1 {
     </div>
 
 </div>
+
+<script>
+function toggleMenu() {
+    const nav = document.getElementById("navLinks");
+    const btn = document.querySelector(".menu-btn");
+
+    nav.classList.toggle("show");
+    btn.textContent = nav.classList.contains("show") ? "Close" : "Menu";
+}
+</script>
 
 </body>
 </html>
