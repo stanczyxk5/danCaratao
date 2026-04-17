@@ -1,201 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Portfolio - Home</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
+<title>Portfolio</title>
 
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: black;
-            color: #bbffc1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #bbffc1;
+}
 
-        
-        .navbar {
-            background-color: rgb(136, 255, 0);
-            padding: 15px 0;
-            text-align: center;
-            width: 100%;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+.navbar {
+    background-color: #88ff00;
+    padding: 12px;
+    text-align: center;
+}
 
-        .navbar a {
-            color: black;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 0 25px;
-            font-size: 16px;
-        }
+.navbar a {
+    color: #000;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
 
-        .navbar a:hover {
-            color: white;
-        }
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 20px auto;
+}
 
-        
-        .container {
-            max-width: 800px;
-            width: 90%;
-            margin: 40px auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #111;
+    border: 2px solid #88ff00;
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
 
-        
-        .profile-card {
-            background-color: rgb(44, 44, 44);
-            border: 3px solid rgb(136, 255, 0);
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            width: 100%;
-        }
+.profile img {
+    width: 140px;
+    height: 180px;
+    object-fit: cover;
+    border: 2px solid #88ff00;
+    border-radius: 6px;
+}
 
-        .profile-card img {
-            border-radius: 50%;
-            border: 3px solid #c0ffc5;
-            width: 120px;
-            height: 120px;
-            margin-bottom: 15px;
-        }
+.profile-text h2 {
+    margin: 0;
+    color: #88ff00;
+}
 
-        .profile-card h1 {
-            margin: 10px 0 5px 0;
-            font-size: 24px;
-            color: rgb(136, 255, 0);
-        }
+.grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 15px;
+}
 
-        .profile-card p {
-            margin: 5px 0;
-            font-size: 16px;
-        }
+.box {
+    background: #111;
+    border: 1px solid #333;
+    padding: 20px;
+    border-radius: 8px;
+}
 
-        
-        .section {
-            margin-top: 30px;
-            background-color: rgb(33, 33, 33);
-            border-left: 5px solid rgb(136, 255, 0);
-            padding: 20px;
-            border-radius: 10px;
-            width: 100%;
-            text-align: center;
-        }
+.full {
+    grid-column: 1 / -1;
+}
 
-        .section h2 {
-            margin-top: 0;
-            color: rgb(136, 255, 0);
-        }
+h2 {
+    color: #88ff00;
+    margin-top: 0;
+}
 
-        .section p {
-            font-size: 16px;
-            line-height: 1.5;
-        }
+@media (max-width: 700px) {
+    .profile {
+        flex-direction: column;
+        text-align: center;
+    }
 
-        hr {
-            margin: 40px 0;
-            border: 1px solid rgba(136,255,0,0.5);
-            width: 80%;
-        }
-
-        
-        .links a {
-            display: inline-block;
-            margin: 6px;
-            padding: 8px 12px;
-            border: 1px solid rgb(136,255,0);
-            color: #bbffc1;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .links a:hover {
-            background-color: rgb(136,255,0);
-            color: black;
-        }
-
-        
-        .top {
-            margin: 30px;
-        }
-
-        .top a {
-            color: rgb(136,255,0);
-            text-decoration: none;
-        }
-
-    </style>
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </head>
 
 <body>
 
-
 <div class="navbar">
-    <a href="index.html">Home</a>
-    <a href="dashboard.html">Dashboard</a>
-    <a href="quiz.html">Quiz Upload</a>
-    <a href="lab.html">Lab Upload</a>
-    <a href="exam.html">Exam Upload</a>
+    <a href="#top">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#hobbies">Hobbies</a>
+    <a href="#contact">Contact</a>
 </div>
-
 
 <div class="container">
 
-    
-    <div class="profile-card" id="top">
+    <div class="profile" id="top">
         <img src="image/dawg.jpg" alt="Profile">
-        <h1>Dan Elisur M. Caratao</h1>
-        <p>BS Computer Science - CS-1B</p>
-        <p>Student No: 251100796</p>
+
+        <div class="profile-text">
+            <h2>Dan Elisur M. Caratao</h2>
+            <p>BS Computer Science - CS-1B</p>
+            <p>Student No: 251100796</p>
+        </div>
     </div>
 
-    <hr>
+    <div class="grid">
 
+        <div class="box" id="about">
+            <h2>About Me</h2>
+            <p>
+                I'm Dan, 20 years old. I enjoy learning new things and improving myself in programming and life skills.
+            </p>
+        </div>
 
-    <div class="section" id="about">
-        <h2>About Me</h2>
-        <p>
-            I'm Dan, 20 years old. I’m a simple and easygoing person who enjoys
-            spending time doing the things I love. I value honesty, respect, and
-            self-improvement. I like learning new things and challenging myself
-            to grow both personally and academically.
-        </p>
-    </div>
+        <div class="box" id="skills">
+            <h2>Skills</h2>
+            <p>HTML, CSS, Java, C++, Visual Basic, Photoshop</p>
+        </div>
 
-    
-    <div class="section" id="skills">
-        <h2>Skills</h2>
-        <p>HTML, CSS, Basic JavaScript, Java, C++, Visual Basic, Adobe Photoshop, Adobe Flash</p>
-    </div>
+        <div class="box" id="hobbies">
+            <h2>Hobbies</h2>
+            <p>Coding, Gaming, Working Out, Music, Digital Art</p>
+        </div>
 
-    
-    <div class="section" id="hobbies">
-        <h2>Hobbies</h2>
-        <p>Coding, Gaming, Working Out, Digital Art, Riding Bike, Playing Guitar, Listening to Music, Hangout with Friends</p>
-    </div>
+        <div class="box full" id="contact">
+            <h2>Contact</h2>
+            <p>Email: danelisur.caratao@cvsu.edu.ph</p>
+            <p>Facebook: facebook.com/eyelessed</p>
+            <p>Location: Philippines</p>
+        </div>
 
-
-    
-    <div class="section">
-        <h2>Contact</h2>
-        <p>Email: danelisur.caratao@cvsu.edu.ph</p>
-        <p>Facebook: facebook.com/eyelessed</p>
-        <p>Location: Philippines</p>
-    </div>
-
-    
-    <div class="top">
-        <a href="#top">⬆ Back to Top</a>
     </div>
 
 </div>
