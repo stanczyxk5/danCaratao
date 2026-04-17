@@ -12,17 +12,52 @@ body {
     color: #bbffc1;
 }
 
+/* ===== NAVBAR ===== */
 .navbar {
-    background: rgb(136,255,0);
-    padding: 15px;
-    text-align: center;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 20px;
+    background: #0a0a0a;
+    border-bottom: 2px solid #88ff00;
+    z-index: 1000;
 }
 
-.navbar a {
-    color: black;
-    font-weight: bold;
-    margin: 0 15px;
+.menu-btn {
+    display: none;
+    background: none;
+    border: 1px solid #88ff00;
+    color: #88ff00;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-links a {
+    margin-left: 15px;
+    color: #bbffc1;
     text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #88ff00;
+    color: #000;
+}
+
+.nav-links a.active {
+    background-color: #88ff00;
+    color: #000;
 }
 
 h1 {
@@ -48,7 +83,6 @@ h1 {
     gap: 12px;
 }
 
-
 .card {
     display: flex;
     align-items: center;
@@ -58,14 +92,12 @@ h1 {
     border-radius: 6px;
 }
 
-
 .card img {
     width: 55px;
     height: 55px;
     object-fit: cover;
     border-radius: 4px;
 }
-
 
 .info h3 {
     margin: 0;
@@ -85,14 +117,38 @@ h1 {
     color: white;
 }
 
-
 .col.right .card {
     flex-direction: row-reverse;
     text-align: right;
 }
 
-
 @media (max-width: 700px) {
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 55px;
+        right: 20px;
+        background: #111;
+        border: 1px solid #88ff00;
+        border-radius: 6px;
+        display: none;
+        flex-direction: column;
+        width: 160px;
+        padding: 10px;
+    }
+
+    .nav-links a {
+        margin: 5px 0;
+        text-align: center;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
     .wrapper {
         flex-direction: column;
     }
@@ -108,22 +164,25 @@ h1 {
 <body>
 
 <div class="navbar">
-    <a href="index.html">Home</a>
-    <a href="dashboard.html">Dashboard</a>
-    <a href="quiz.html">Quiz</a>
-    <a href="lab.html">Laboratory</a>
-    <a href="exam.html">Exam</a>
+    <button class="menu-btn" onclick="toggleMenu()">Menu</button>
+
+    <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="lab.html" class="active">Laboratory</a>
+        <a href="exam.html">Exam</a>
+    </div>
 </div>
 
 <h1>Laboratory</h1>
 
 <div class="wrapper">
 
-    
     <div class="col left">
 
         <div class="card">
-            <img src="image/n.gif">
+            <img src="image/n.jpg">
             <div class="info">
                 <h3>Portfolio</h3>
                 <a href="index.html">Open Project</a>
@@ -131,7 +190,7 @@ h1 {
         </div>
 
         <div class="card">
-            <img src="m.gif">
+            <img src="image/m.gif">
             <div class="info">
                 <h3>Functions</h3>
                 <a href="LAB PROJECTS/function.html">Open Project</a>
@@ -140,7 +199,6 @@ h1 {
 
     </div>
 
-    
     <div class="col right">
 
         <div class="card">
@@ -162,6 +220,16 @@ h1 {
     </div>
 
 </div>
+
+<script>
+function toggleMenu() {
+    const nav = document.getElementById("navLinks");
+    const btn = document.querySelector(".menu-btn");
+
+    nav.classList.toggle("show");
+    btn.textContent = nav.classList.contains("show") ? "Close" : "Menu";
+}
+</script>
 
 </body>
 </html>
