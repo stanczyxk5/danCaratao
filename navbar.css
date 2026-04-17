@@ -8,10 +8,13 @@
     background: #0a0a0a;
     border-bottom: 2px solid #88ff00;
     z-index: 1000;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .menu-btn {
     display: block;
+    margin-left: auto;
     background: none;
     border: 1px solid #88ff00;
     color: #88ff00;
