@@ -6,59 +6,14 @@
 
 <title>Portfolio</title>
 
+<link rel="stylesheet" href="navbar.css">
+
 <style>
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #000;
     color: #bbffc1;
-}
-
-.navbar {
-    position: sticky;
-    top: 0;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 10px 20px;
-    background: #0a0a0a;
-    border-bottom: 2px solid #88ff00;
-    z-index: 1000;
-}
-
-.menu-btn {
-    display: none;
-    background: none;
-    border: 1px solid #88ff00;
-    color: #88ff00;
-    padding: 4px 8px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-.nav-links {
-    display: flex;
-}
-
-.nav-links a {
-    margin-left: 15px;
-    color: #bbffc1;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 4px;
-    transition: 0.3s;
-}
-
-.nav-links a:hover {
-    background-color: #88ff00;
-    color: #000;
-}
-
-.nav-links a.active {
-    background-color: #88ff00;
-    color: #000;
 }
 
 .container {
@@ -124,32 +79,6 @@ h2 {
 }
 
 @media (max-width: 700px) {
-    .menu-btn {
-        display: block;
-    }
-
-    .nav-links {
-        position: absolute;
-        top: 55px;
-        right: 20px;
-        background: #111;
-        border: 1px solid #88ff00;
-        border-radius: 6px;
-        display: none;
-        flex-direction: column;
-        width: 160px;
-        padding: 10px;
-    }
-
-    .nav-links a {
-        margin: 5px 0;
-        text-align: center;
-    }
-
-    .nav-links.show {
-        display: flex;
-    }
-
     .profile {
         flex-direction: column;
         text-align: center;
@@ -164,6 +93,7 @@ h2 {
 
 <body>
 
+<!-- NAVBAR (reusable) -->
 <div class="navbar">
     <button class="menu-btn" onclick="toggleMenu()">Menu</button>
 
@@ -225,15 +155,8 @@ h2 {
 
 </div>
 
-<script>
-function toggleMenu() {
-    const nav = document.getElementById("navLinks");
-    const btn = document.querySelector(".menu-btn");
 
-    nav.classList.toggle("show");
-    btn.textContent = nav.classList.contains("show") ? "Close" : "Menu";
-}
-</script>
+<script src="navbar.js"></script>
 
 </body>
 </html>
