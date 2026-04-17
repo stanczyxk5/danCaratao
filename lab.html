@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Laboratory</title>
 
+<link rel="stylesheet" href="navbar.css">
+
 <style>
 body {
     margin: 0;
@@ -13,75 +15,13 @@ body {
     color: #bbffc1;
 }
 
-/* ===== NAVBAR ===== */
-.navbar {
-    position: sticky;
-    top: 0;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 10px 20px;
-    background: #0a0a0a;
-    border-bottom: 2px solid #88ff00;
-    z-index: 1000;
-}
-
-.menu-btn {
-    display: block;
-    background: none;
-    border: 1px solid #88ff00;
-    color: #88ff00;
-    padding: 4px 8px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-.nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 55px;
-    right: 20px;
-    background: #111;
-    border: 1px solid #88ff00;
-    border-radius: 6px;
-    width: 160px;
-    padding: 10px;
-}
-
-.nav-links a {
-    color: #bbffc1;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 8px;
-    text-align: center;
-    border-radius: 4px;
-    transition: 0.3s;
-}
-
-.nav-links a:hover {
-    background: #88ff00;
-    color: #000;
-}
-
-.nav-links a.active {
-    background: #88ff00;
-    color: #000;
-}
-
-.nav-links.show {
-    display: flex;
-}
-
-
 h1 {
     text-align: center;
     color: rgb(136,255,0);
     margin-top: 30px;
 }
 
-
+/* WRAPPER */
 .wrapper {
     display: flex;
     gap: 20px;
@@ -90,7 +30,7 @@ h1 {
     padding: 10px;
 }
 
-
+/* COLUMNS */
 .col {
     flex: 1;
     display: flex;
@@ -152,6 +92,7 @@ h1 {
 
 <body>
 
+<!-- NAVBAR -->
 <div class="navbar">
     <button class="menu-btn" onclick="toggleMenu()">Menu</button>
 
@@ -210,12 +151,7 @@ h1 {
 
 </div>
 
-<script>
-function toggleMenu() {
-    const nav = document.getElementById("navLinks");
-    nav.classList.toggle("show");
-}
-</script>
+<script src="navbar.js"></script>
 
 </body>
 </html>
