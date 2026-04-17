@@ -15,7 +15,7 @@
             align-items: center;
         }
 
-        /* NAVBAR */
+      
         .navbar {
             background-color: rgb(136, 255, 0);
             padding: 15px 0;
@@ -38,7 +38,7 @@
             color: white;
         }
 
-        /* MAIN CONTAINER */
+        
         .container {
             max-width: 900px;
             width: 90%;
@@ -53,7 +53,7 @@
             color: rgb(136, 255, 0);
         }
 
-        /* CARDS */
+        
         .cards {
             display: flex;
             justify-content: center;
@@ -88,7 +88,7 @@
             font-size: 14px;
         }
 
-        /* RESET BUTTON */
+        
         button {
             margin-top: 30px;
             padding: 10px 20px;
@@ -107,7 +107,7 @@
 
 <body>
 
-<!-- NAVBAR -->
+
 <div class="navbar">
     <a href="index.html">Home</a>
     <a href="dashboard.html">Dashboard</a>
@@ -116,21 +116,21 @@
     <a href="exam.html">Exam Upload</a>
 </div>
 
-<!-- MAIN -->
+
 <div class="container">
     <h1>My Dashboard</h1>
 
     <div class="cards">
         <div class="card">
-            <h2 id="total">0</h2>
+            <h2 id="total">6</h2>
             <p>Total Uploads</p>
         </div>
         <div class="card">
-            <h2 id="quiz">0</h2>
+            <h2 id="quiz">3</h2>
             <p>Quiz Uploads</p>
         </div>
         <div class="card">
-            <h2 id="lab">0</h2>
+            <h2 id="lab">4</h2>
             <p>Lab Uploads</p>
         </div>
         <div class="card">
@@ -138,34 +138,6 @@
             <p>Exam Uploads</p>
         </div>
     </div>
-
-    <button onclick="resetData()">Reset Data</button>
-</div>
-
-<!-- SCRIPT -->
-<script>
-function loadDashboard() {
-    document.getElementById("total").textContent =
-        localStorage.getItem("totalUploads") || 0;
-
-    document.getElementById("quiz").textContent =
-        localStorage.getItem("quizCount") || 0;
-
-    document.getElementById("lab").textContent =
-        localStorage.getItem("labCount") || 0;
-
-    document.getElementById("exam").textContent =
-        localStorage.getItem("examCount") || 0;
-}
-
-function resetData() {
-    localStorage.clear();
-    loadDashboard();
-}
-
-// Load data when page opens
-loadDashboard();
-</script>
 
 </body>
 </html>
