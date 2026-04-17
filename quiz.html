@@ -1,154 +1,160 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Quiz Upload</title>
+    <title>Quiz Gallery</title>
 
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
 
-        body {
-            background-color: black;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
+<style>
+    body {
+        background: linear-gradient(135deg, #000000, #1a1a1a);
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
 
-        /* NAVBAR */
-        .navbar {
-            background-color: rgb(136, 255, 0);
-            padding: 15px 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-        }
+    
+    .navbar {
+        background-color: rgb(136, 255, 0);
+        padding: 15px 0;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        box-shadow: 0 0 10px rgb(136, 255, 0);
+    }
 
-        .navbar a {
-            color: black;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 0 25px;
-            font-size: 16px;
-        }
+    .navbar a {
+        color: black;
+        text-decoration: none;
+        font-weight: bold;
+        margin: 0 25px;
+        font-size: 16px;
+    }
 
-        .navbar a:hover {
-            color: white;
-        }
+    .navbar a:hover {
+        color: white;
+    }
 
-        /* CONTAINER */
-        .container {
-            border: 5px solid rgb(136, 255, 0);
-            width: 900px;
-            max-width: 90%;
-            padding: 30px;
-            background-color: rgb(44, 44, 44);
-            margin: 50px auto;
-            color: #bbffc1;
-        }
+    h1 {
+        text-align: center;
+        color: rgb(136, 255, 0);
+        margin: 30px 0;
+        text-shadow: 0 0 10px rgb(136, 255, 0);
+    }
 
-        h1 {
-            text-align: center;
-            color: rgb(136, 255, 0);
-        }
+    
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        padding: 40px;
+    }
 
-        /* FORM */
-        .form-group {
-            margin: 20px 0;
-        }
+    .card {
+        background: #2c2c2c;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: 0.3s;
+        cursor: pointer;
+    }
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgb(136, 255, 0);
+    }
 
-        input[type="text"],
-        input[type="file"] {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-        }
+    .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
 
-        button {
-            background-color: rgb(136, 255, 0);
-            color: black;
-            padding: 12px 20px;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            border-radius: 5px;
-        }
+    .card p {
+        padding: 10px;
+        text-align: center;
+        color: #bbffc1;
+        font-weight: bold;
+    }
 
-        button:hover {
-            background-color: #aaff33;
-        }
+    
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 10;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.9);
+        justify-content: center;
+        align-items: center;
+    }
 
-        #message {
-            text-align: center;
-            margin-top: 20px;
-            font-weight: bold;
-        }
-    </style>
+    .modal img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 10px;
+    }
+</style>
+
+
 </head>
 
 <body>
 
-<!-- NAVBAR -->
 <div class="navbar">
     <a href="index.html">Home</a>
     <a href="dashboard.html">Dashboard</a>
-    <a href="quiz.html">Quiz Upload</a>
+    <a href="quiz.html">Quiz Gallery</a>
     <a href="lab.html">Lab Upload</a>
     <a href="exam.html">Exam Upload</a>
 </div>
 
-<!-- MAIN -->
-<div class="container">
-    <h1>Quiz Upload</h1>
+<h1>Quiz Gallery</h1>
 
-    <form onsubmit="submitQuiz(event)">
-        
-        <div class="form-group">
-            <label>Quiz Title</label>
-            <input type="text" id="title" required>
-        </div>
+<div class="gallery">
 
-        <div class="form-group">
-            <label>Upload Quiz File</label>
-            <input type="file" id="file" required>
-        </div>
 
-        <div class="form-group">
-            <label>Upload Proof (Image)</label>
-            <input type="file" id="image" accept="image/*" required>
-        </div>
+<div class="card" onclick="openModal(this)">
+    <img src="qImages/quiz1.jpg" alt="Quiz 1">
+    <p>Quiz 1</p>
+</div>
 
-        <button type="submit">Submit</button>
-    </form>
+<div class="card" onclick="openModal(this)">
+    <img src="qImages/quiz2.jpg" alt="Quiz 2">
+    <p>Quiz 2</p>
+</div>
 
-    <p id="message"></p>
+<div class="card" onclick="openModal(this)">
+    <img src="qImages/quiz3.1.jpg" alt="Quiz 3.1">
+    <p>Quiz 3.1</p>
+</div>
+
+<div class="card" onclick="openModal(this)">
+    <img src="qImages/quiz3.2.jpg" alt="Quiz 3.2">
+    <p>Quiz 3.2</p>
+</div>
+
+<div class="card" onclick="openModal(this)">
+    <img src="qImages/carousel.jpg" alt="carousel">
+    <p>Carousel</p>
+</div>
+
+</div>
+
+<div class="modal" id="modal" onclick="closeModal()">
+    <img id="modalImg">
 </div>
 
 <script>
-function submitQuiz(event) {
-    event.preventDefault();
+function openModal(card) {
+    const img = card.querySelector("img").src;
+    document.getElementById("modalImg").src = img;
+    document.getElementById("modal").style.display = "flex";
+}
 
-    // get existing quiz count
-    let quizCount = localStorage.getItem("quizCount") || 0;
-    quizCount++;
-
-    // save updated count
-    localStorage.setItem("quizCount", quizCount);
-
-    // update total uploads too
-    let total = localStorage.getItem("totalUploads") || 0;
-    total++;
-    localStorage.setItem("totalUploads", total);
-
-    document.getElementById("message").textContent = "Quiz uploaded successfully!";
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
 }
 </script>
 
