@@ -102,22 +102,36 @@ h2 {
     text-shadow: 0 0 10px rgb(136, 255, 0);
 }
 
-/* TERMINAL */
+/* TERMINAL (UPDATED) */
 #terminal {
-    background: #111;
-    border: 1px solid #333;
+    background: #000;
+    border: 1px solid #88ff00;
     padding: 20px;
     border-radius: 8px;
 }
 
-#terminal textarea {
-    width: 100%;
+#output {
     height: 160px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.input-line {
+    display: flex;
+    align-items: center;
+}
+
+.input-line span {
+    color: #88ff00;
+    margin-right: 5px;
+}
+
+#commandInput {
+    width: 100%;
     background: transparent;
     color: #bbffc1;
     border: none;
     outline: none;
-    resize: none;
     font-family: "Courier New", monospace;
 }
 
@@ -235,8 +249,14 @@ h2 {
             <p>Instagram: instagram.com/_jcfrappuccino/</p>
         </div>
 
+       
         <div class="box full" id="terminal">
-            <textarea placeholder="type here..."></textarea>
+          <div><h2>console.log<h2></div>
+            <div id="output"></div>
+            <div class="input-line">
+                <span>> </span>
+                <input type="text" id="commandInput" placeholder="type here..." autofocus>
+            </div>
         </div>
 
     </div>
@@ -244,6 +264,55 @@ h2 {
 </div>
 
 <script src="navbar.js"></script>
+
+<script>
+
+
+const input = document.getElementById("commandInput");
+const output = document.getElementById("output");
+
+const commands = {
+   
+    help: "Available: help, more, whoami, neofetch, clear, matrix",
+    more: "I'm into playing guitar, making art, watching movies, reading biographies of dead, influential people",
+    whoami: "born in december 9, 2005, i grew up in silang, cavite. studied my way to college and is currently taking bscs in cvsu-silang",
+    neofetch: "User: dan\nage: 20\ncourse: bscs\nstatus: still_grinding();",
+    matrix: "there is no spoon."
+
+};
+
+function printLine(text) {
+    const line = document.createElement("div");
+    line.textContent = text;
+    output.appendChild(line);
+}
+
+input.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        const cmd = input.value.trim().toLowerCase();
+
+        printLine("> " + cmd);
+
+        if (cmd === "clear") {
+            output.innerHTML = "";
+        } else if (commands[cmd]) {
+            printLine(commands[cmd]);
+        } else {
+            printLine("Command not found. Type 'help'");
+        }
+
+        input.value = "";
+        output.scrollTop = output.scrollHeight;
+    }
+});
+
+window.onload = () => {
+    printLine("booting ballsOSv6.9...");
+    printLine("yo: gurt:$");
+    printLine("Wake up, neo.");
+};
+
+</script>
 
 </body>
 </html>
