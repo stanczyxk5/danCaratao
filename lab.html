@@ -8,9 +8,10 @@
 <link rel="stylesheet" href="navbar.css">
 
 <style>
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: "Courier New", Courier, monospace;
     background: #000;
     color: #bbffc1;
 }
@@ -19,9 +20,9 @@ h1 {
     text-align: center;
     color: rgb(136,255,0);
     margin-top: 30px;
+    text-shadow: 0 0 10px rgb(136,255,0);
 }
 
-/* WRAPPER */
 .wrapper {
     display: flex;
     gap: 20px;
@@ -30,7 +31,6 @@ h1 {
     padding: 10px;
 }
 
-/* COLUMNS */
 .col {
     flex: 1;
     display: flex;
@@ -45,6 +45,7 @@ h1 {
     background: #111;
     padding: 12px;
     border-radius: 6px;
+    border: 1px solid #333;
 }
 
 .card img {
@@ -58,6 +59,7 @@ h1 {
     margin: 0;
     font-size: 16px;
     color: #bbffc1;
+    text-shadow: 0 0 6px rgb(136,255,0);
 }
 
 .info a {
@@ -78,6 +80,7 @@ h1 {
 }
 
 @media (max-width: 700px) {
+
     .wrapper {
         flex-direction: column;
     }
@@ -86,13 +89,14 @@ h1 {
         flex-direction: row;
         text-align: left;
     }
+
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
 <div class="navbar">
     <button class="menu-btn" onclick="toggleMenu()">Menu</button>
 
