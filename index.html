@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="navbar.css">
 
 <style>
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -17,28 +18,31 @@ body {
 }
 
 #boxx {
-  
     display: flex;
-  
 }
+
 #hobbies {
     width: 40%;
     float: left;
     padding: 20px;
 }
-#skills{
+
+#skills {
     width: 40%;
     float: right;
     padding: 20px;
 }
+
 .container {
     width: 90%;
     max-width: 900px;
     margin: 20px auto;
 }
+
 #about {
     text-align: justify;
 }
+
 .profile {
     display: flex;
     align-items: center;
@@ -62,11 +66,11 @@ body {
     margin: 0;
     color: #88ff00;
 }
+
 #mymedia h5 {
     margin: 0;
     color: #88ff00;
 }
-
 
 .grid {
     display: grid;
@@ -100,6 +104,25 @@ h2 {
     margin: 0 auto;
 }
 
+/* SIMPLE TERMINAL (NO GLITCH, NO GLOW) */
+#terminal {
+    background: #111;
+    border: 1px solid #333;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+#terminal textarea {
+    width: 100%;
+    height: 160px;
+    background: transparent;
+    color: #bbffc1;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: "Courier New", monospace;
+}
+
 @media (max-width: 700px) {
     .profile {
         flex-direction: column;
@@ -110,11 +133,11 @@ h2 {
         grid-template-columns: 1fr;
     }
 }
+
 </style>
 </head>
 
 <body>
-
 
 <div class="navbar">
     <button class="menu-btn" onclick="toggleMenu()">Menu</button>
@@ -144,7 +167,7 @@ h2 {
 
         <div class="box" id="about">
             <h2>Who?</h2>
-<p>
+            <p>
 My name is Dan, 20 years old, a first year BS Computer Science student.</p><p>
 I’m easygoing and enjoy learning new things.  
 I like figuring things out, and improving through trial and error.
@@ -152,68 +175,68 @@ I like figuring things out, and improving through trial and error.
 Outside of college and school work, I enjoy simple things that help me reset and stay balanced.  
 I value good humor, honesty, and anything that keeps life from being too boring.
 </p>
-
-            
         </div>
         
         <div class="box" id="things">
             <img src="image/sk.gif" alt="dan">
         </div>
         
-<div class="box" id="boxx">
-        <div class="box" id="skills">
-         
-            <h2>Skills</h2>
-            <ul>          
-              <li>C++</li>
-              <li>Visual Basic</li>
-              <li>Java</li>
-              <li>HTML</li>
-              <li>CSS</li>
-              <li>JavaScript</li>
-            </ul>
-             
+        <div class="box" id="boxx">
+            <div class="box" id="skills">
+                <h2>Skills</h2>
+                <ul>
+                    <li>C++</li>
+                    <li>Visual Basic</li>
+                    <li>Java</li>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                </ul>
+            </div>
+
+            <div class="box" id="hobbies">
+                <h2>Hobbies</h2>
+                <p>Drinking, Smoking, Gaming, Working Out, Playing Music, Pondering, & Walking at night with my shawti</p>
+            </div>
         </div>
 
-        <div class="box" id="hobbies">
-            <h2>Hobbies</h2>
-            <p>Drinking, Smoking, Gaming, Working Out, Playing Music, Pondering, & Walking at night with my shawti</p>
-        </div>
-</div>
-
-         <div class="box" id="mymedia">
+        <div class="box" id="mymedia">
             <h2>Media Rotation</h2>
             <h5>Music</h5>
             <ul>
-              <li>
-                <i>Runaway Train</i> by Soul Asylum
-              </li>
-              <li>
-                <i>Laughing</i> by The Guess Who
-              </li>
-              <li>
-                <i>Stranger</i> by Secondhand Serenade
-              </li>
+                <li><i>Runaway Train</i> by Soul Asylum</li>
+                <li><i>Laughing</i> by The Guess Who</li>
+                <li><i>Stranger</i> by Secondhand Serenade</li>
             </ul>
+
             <h5>Podcast</h5>
             <ul>
-              <li>
-              <i>Let's read</i>
-              </li>
+                <li><i>Let's read</i></li>
             </ul>
         </div>
         
         <div class="box full" id="contact">
             <h2>Contact</h2>
             <p>Email: danelisur.caratao@cvsu.edu.ph</p>
-            <p>Facebook: facebook.com/eyelessed</p>
+       <p>
+My name is Dan, 20 years old, a first year BS Computer Science student.</p><p>
+I’m easygoing and enjoy learning new things.  
+I like figuring things out, and improving through trial and error.
+</p><p>
+Outside of college and school work, I enjoy simple things that help me reset and stay balanced.  
+I value good humor, honesty, and anything that keeps life from being too boring.
+</p>     <p>Facebook: facebook.com/eyelessed</p>
             <p>Instagram: instagram.com/_jcfrappuccino/</p>
+        </div>
+
+        
+        <div class="box full" id="terminal">
+            <textarea placeholder=">"></textarea>
         </div>
 
     </div>
 
 </div>
-
 
 <script src="navbar.js"></script>
 
