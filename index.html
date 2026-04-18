@@ -17,32 +17,13 @@ body {
     color: #bbffc1;
 }
 
-#boxx {
-    display: flex;
-}
-
-#hobbies {
-    width: 40%;
-    float: left;
-    padding: 20px;
-}
-
-#skills {
-    width: 40%;
-    float: right;
-    padding: 20px;
-}
-
 .container {
     width: 90%;
     max-width: 900px;
     margin: 20px auto;
 }
 
-#about {
-    text-align: justify;
-}
-
+/* PROFILE */
 .profile {
     display: flex;
     align-items: center;
@@ -67,11 +48,7 @@ body {
     color: #88ff00;
 }
 
-#mymedia h5 {
-    margin: 0;
-    color: #88ff00;
-}
-
+/* GRID */
 .grid {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
@@ -94,6 +71,7 @@ h2 {
     margin-top: 0;
 }
 
+/* IMAGE */
 #things img {
     width: 169px;
     height: 160px;
@@ -104,7 +82,24 @@ h2 {
     margin: 0 auto;
 }
 
+/* BOX FLEX SECTION (skills + hobbies) */
+#boxx {
+    display: flex;
+    gap: 15px;
+}
 
+#skills, #hobbies {
+    width: 50%;
+    padding: 20px;
+}
+
+/* MEDIA */
+#mymedia h5 {
+    margin: 0;
+    color: #88ff00;
+}
+
+/* TERMINAL */
 #terminal {
     background: #111;
     border: 1px solid #333;
@@ -123,7 +118,14 @@ h2 {
     font-family: "Courier New", monospace;
 }
 
+/* NAVBAR ACTIVE STYLE (optional keep) */
+.nav-links a {
+    text-decoration: none;
+}
+
+/* ===== MOBILE FIX ===== */
 @media (max-width: 700px) {
+
     .profile {
         flex-direction: column;
         text-align: center;
@@ -132,6 +134,16 @@ h2 {
     .grid {
         grid-template-columns: 1fr;
     }
+
+    #boxx {
+        flex-direction: column;
+    }
+
+    #skills,
+    #hobbies {
+        width: 100%;
+    }
+
 }
 
 </style>
@@ -153,7 +165,7 @@ h2 {
 
 <div class="container">
 
-    <div class="profile" id="top">
+    <div class="profile">
         <img src="image/king.jpg" alt="Profile">
 
         <div class="profile-text">
@@ -167,21 +179,17 @@ h2 {
 
         <div class="box" id="about">
             <h2>>Who?</h2>
-            <p>
-My name is Dan, 20 years old, a first year BS Computer Science student.</p><p>
-I’m easygoing and enjoy learning new things.  
-I like figuring things out, and improving through trial and error.
-</p><p>
-Outside of college and school work, I enjoy simple things that help me reset and stay balanced.  
-I value good humor, honesty, and anything that keeps life from being too boring.
-</p>
+            <p>My name is Dan, 20 years old, a first year BS Computer Science student.</p>
+            <p>I’m easygoing and enjoy learning new things.</p>
+            <p>I like figuring things out through trial and error.</p>
         </div>
-        
+
         <div class="box" id="things">
             <img src="image/sk.gif" alt="dan">
         </div>
-        
+
         <div class="box" id="boxx">
+
             <div class="box" id="skills">
                 <h2>>Skills//g:</h2>
                 <ul>
@@ -196,12 +204,14 @@ I value good humor, honesty, and anything that keeps life from being too boring.
 
             <div class="box" id="hobbies">
                 <h2>>Hobbies//f:</h2>
-                <p>Drinking, Smoking, Gaming, Working Out, Playing Music, Pondering, & Walking at night with my shawti</p>
+                <p>Gaming, Working Out, Music, Walking at night</p>
             </div>
+
         </div>
 
         <div class="box" id="mymedia">
             <h2>>Media_Rotation$$</h2>
+
             <h5>>Music#</h5>
             <ul>
                 <li><i>Runaway Train</i> by Soul Asylum</li>
@@ -214,15 +224,14 @@ I value good humor, honesty, and anything that keeps life from being too boring.
                 <li><i>Let's read</i></li>
             </ul>
         </div>
-        
+
         <div class="box full" id="contact">
             <h2>>Contact@</h2>
             <p>Email: danelisur.caratao@cvsu.edu.ph</p>
-           <p>Facebook: facebook.com/eyelessed</p>
+            <p>Facebook: facebook.com/eyelessed</p>
             <p>Instagram: instagram.com/_jcfrappuccino/</p>
         </div>
 
-        
         <div class="box full" id="terminal">
             <textarea placeholder="type here..."></textarea>
         </div>
