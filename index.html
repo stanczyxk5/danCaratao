@@ -1,12 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Portfolio</title>
-
-<link rel="stylesheet" href="navbar.css">
+<title>CarataoDan</title>
 
 <style>
 
@@ -23,6 +22,52 @@ body {
     margin: 20px auto;
 }
 
+
+.navbarkongmalupet {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #88ff00;
+    background: #000;
+}
+
+.system-left {
+    color: #88ff00;
+    font-weight: bold;
+}
+
+.system-center a {
+    color: #bbffc1;
+    text-decoration: none;
+    margin: 0 15px;
+    position: relative;
+}
+
+
+.system-center a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 1px;
+    background: #88ff00;
+    transition: 0.2s;
+}
+
+.system-center a:hover {
+    color: #88ff00;
+}
+
+.system-center a:hover::after {
+    width: 100%;
+}
+
+.system-right {
+    font-size: 13px;
+    color: #777;
+}
 
 .profile {
     display: flex;
@@ -85,7 +130,6 @@ h2 {
     margin: 0 auto;
 }
 
-
 #boxx {
     display: flex;
     gap: 15px;
@@ -95,7 +139,6 @@ h2 {
 #hobbies {
     width: 50%;
 }
-
 
 #mymedia h5 {
     margin: 0;
@@ -137,11 +180,6 @@ h2 {
 }
 
 
-.nav-links a {
-    text-decoration: none;
-}
-
-
 @media (max-width: 700px) {
 
     .profile {
@@ -165,115 +203,119 @@ h2 {
 }
 
 </style>
+
 </head>
 
 <body>
 
-<div class="navbar">
-    <button class="menu-btn" onclick="toggleMenu()">Menu</button>
 
-    <div class="nav-links" id="navLinks">
-        <a href="index.html" class="active">[Home]</a>
-        <a href="dashboard.html">[Dashboard]</a>
-        <a href="quiz.html">[Quiz]</a>
-        <a href="lab.html">[Laboratory]</a>
-        <a href="exam.html">[Exam]</a>
-    </div>
+
+<div class="navbarkongmalupet">
+
+
+<div class="system-left">stxnOS</div>
+
+<div class="system-center">
+    <a href="index.html">>index@</a>
+    <a href="dashboard.html">>dashboard@</a>
+    <a href="outputs.html">>outputs@</a>
+</div>
+
+<div class="system-right" id="time"></div>
+
 </div>
 
 <div class="container">
 
-    <div class="profile">
-        <img src="image/IMG_20260418_193825.jpg" alt="Profile">
 
-        <div class="profile-text">
-            <h2>>Caratao, Dan Elisur M.</h2>
-            <p>BS_Computer_Science:CS_1B</p>
-            <p>Student_No:251100796</p>
-        </div>
+<div class="profile">
+    <img src="image/IMG_20260418_193825.jpg" alt="Profile">
+
+    <div class="profile-text">
+        <h2>>Caratao, Dan Elisur M.</h2>
+        <p>BS_Computer_Science:CS_1B</p>
+        <p>Student_No:251100796</p>
+    </div>
+</div>
+
+<div class="grid">
+
+    <div class="box" id="about">
+        <h2>>Who?</h2>
+        <p>My name is Dan, 20 years old, a first year BS Computer Science student.</p>
+        <p>I like dismantling and rebuilding things, improving through trial and error.</p>
+        <p>Outside of college and school work, I enjoy simple things that help me reset and stay balanced. I value good humor, honesty, and anything that keeps life from being too boring.</p>
     </div>
 
-    <div class="grid">
+    <div class="box" id="things">
+        <img src="image/sk.gif" alt="dan">
+    </div>
 
-        <div class="box" id="about">
-            <h2>>Who?</h2>
-            <p>My name is Dan, 20 years old, a first year BS Computer Science student.</p>
-            <p>I like dismantling and rebuilding things, improving through trial and error.</p>
-            <p>Outside of college and school work, I enjoy simple things that help me reset and stay balanced. I value good humor, honesty, and anything that keeps life from being too boring.</p>
-        </div>
+    <div class="box" id="boxx">
 
-        <div class="box" id="things">
-            <img src="image/sk.gif" alt="dan">
-        </div>
-
-        <div class="box" id="boxx">
-
-            <div class="box" id="skills">
-                <h2>>Skills//g:</h2>
-                <ul>
-                    <li>C++</li>
-                    <li>Visual Basic</li>
-                    <li>Java</li>
-                    <li>HTML</li>
-                    <li>CSS</li>
-                    <li>JavaScript</li>
-                </ul>
-            </div>
-
-            <div class="box" id="hobbies">
-                <h2>>Hobbies//f:</h2>
-                <p>Gaming, Working Out, Music, && Walking at night with my shawti</p>
-            </div>
-
-        </div>
-
-        <div class="box" id="mymedia">
-            <h2>>Media_Rotation$$</h2>
-
-            <h5>>Music#</h5>
+        <div class="box" id="skills">
+            <h2>>Skills//g:</h2>
             <ul>
-                <li><i>Runaway Train</i> by Soul Asylum</li>
-                <li><i>Laughing</i> by The Guess Who</li>
-                <li><i>Stranger</i> by Secondhand Serenade</li>
-            </ul>
-
-            <h5>_Podcast$</h5>
-            <ul>
-                <li><i>Let's read</i></li>
+                <li>C++</li>
+                <li>Visual Basic</li>
+                <li>Java</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
             </ul>
         </div>
 
-        <div class="box full" id="contact">
-            <h2>>Contact@</h2>
-            <p>Email: danelisur.caratao@cvsu.edu.ph</p>
-            <p>Facebook: facebook.com/eyelessed</p>
-            <p>Instagram: instagram.com/_jcfrappuccino/</p>
+        <div class="box" id="hobbies">
+            <h2>>Hobbies//f:</h2>
+            <p>Gaming, Working Out, Music, && Walking at night with my shawti</p>
         </div>
 
-       
-        <div class="box full" id="terminal">
-          <div><h2>console.log<h2></div>
-            <div id="output"></div>
-            <div class="input-line">
-                <span>> </span>
-                <input type="text" id="commandInput" placeholder="type here..." autofocus>
-            </div>
-        </div>
+    </div>
 
+    <div class="box" id="mymedia">
+        <h2>>Media_Rotation$$</h2>
+
+        <h5>>Music#</h5>
+        <ul>
+            <li><i>Runaway Train</i> by Soul Asylum</li>
+            <li><i>Laughing</i> by The Guess Who</li>
+            <li><i>Stranger</i> by Secondhand Serenade</li>
+        </ul>
+
+        <h5>_Podcast$</h5>
+        <ul>
+            <li><i>Let's read</i></li>
+        </ul>
+    </div>
+
+    <div class="box full" id="contact">
+        <h2>>Contact@</h2>
+        <p>Email: danelisur.caratao@cvsu.edu.ph</p>
+        <p>Facebook: facebook.com/eyelessed</p>
+        <p>Instagram: instagram.com/_jcfrappuccino/</p>
+    </div>
+
+    <div class="box full" id="terminal">
+        <div><h2>console.log</h2></div>
+        <div id="output"></div>
+        <div class="input-line">
+            <span>> </span>
+            <input type="text" id="commandInput" placeholder="type here..." autofocus>
+        </div>
     </div>
 
 </div>
 
-<script src="navbar.js"></script>
+
+</div>
 
 <script>
-
 
 const input = document.getElementById("commandInput");
 const output = document.getElementById("output");
 
+
 const commands = {
-   
     help: "Available: help, more, whoami, fedc, fav, fmotto, fquote, neofetch, clear, matrix",
     more: "I'm into playing guitar, making art, watching movies, reading biographies of dead, influential people",
     whoami: "born 9th of dec, 2005, i grew up in silang, cavite. studied my way to college and is currently taking bscs in cvsu-silang",
@@ -283,7 +325,6 @@ const commands = {
     fquote: "“He who is not contented with what he has, would not be contented with what he would like to have.” - socramftes",
     neofetch: "User: daniboei\nage: 20\ncourse: bscs\nstatus: still_grinding();",
     matrix: "there is no spoon."
-
 };
 
 function printLine(text) {
@@ -316,6 +357,13 @@ window.onload = () => {
     printLine("yo: gurt:$");
     printLine("Wake up, neo.");
 };
+
+function updateTime() {
+    document.getElementById("time").textContent =
+        new Date().toLocaleTimeString();
+}
+setInterval(updateTime, 1000);
+updateTime();
 
 </script>
 
