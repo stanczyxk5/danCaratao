@@ -1,23 +1,20 @@
 function toggleMenu() {
-    const nav = document.getElementById("navLinks");
-    nav.classList.toggle("active");
+    document.getElementById("navLinks").classList.toggle("active");
 }
 
-
 const links = document.querySelectorAll(".nav-links a");
-const currentPage = window.location.pathname.split("/").pop();
+const page = window.location.pathname.split("/").pop();
 
-links.forEach(link => {
-    if (link.getAttribute("href") === currentPage) {
-        link.classList.add("active");
+links.forEach(a => {
+    if (a.getAttribute("href") === page) {
+        a.classList.add("active");
     }
 });
 
-
 function updateTime() {
-    const time = document.getElementById("time");
-    if (time) {
-        time.textContent = new Date().toLocaleTimeString();
+    const el = document.getElementById("time");
+    if (el) {
+        el.textContent = new Date().toLocaleTimeString();
     }
 }
 
