@@ -1,7 +1,7 @@
 .navbar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    width: 100%;
     padding: 10px 20px;
     border-bottom: 1px solid #88ff00;
     background: #000;
@@ -11,14 +11,15 @@
 .logo {
     color: #88ff00;
     font-weight: bold;
+    flex: 0;
     white-space: nowrap;
 }
 
 .nav-links {
     display: flex;
+    justify-content: center;
     gap: 18px;
     flex: 1;
-    justify-content: center;
 }
 
 .nav-links a {
@@ -41,6 +42,8 @@
     color: #777;
     font-size: 13px;
     white-space: nowrap;
+    flex: 0;
+    margin-left: auto;
 }
 
 .menu-btn {
@@ -50,6 +53,7 @@
     color: #88ff00;
     padding: 5px 10px;
     cursor: pointer;
+    margin-right: 10px;
 }
 
 @media (max-width: 700px) {
@@ -66,7 +70,6 @@
         background: #000;
         border: 1px solid #88ff00;
         padding: 10px;
-        justify-content: flex-start;
     }
 
     .nav-links.active {
