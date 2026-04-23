@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Portfolio</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: "Courier New", Courier, monospace;
+    background-color: #000;
+    color: #bbffc1;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+    border-bottom: 1px solid #88ff00;
+    background: #000;
+}
+
+.logo {
+    color: #88ff00;
+    font-weight: bold;
+    flex: 0;
+    white-space: nowrap;
+}
+
+.nav-links {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    gap: 18px;
+}
+
+.nav-links a {
+    color: #bbffc1;
+    text-decoration: none;
+    transition: 0.2s;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: #88ff00;
+    text-shadow: 0 0 6px #88ff00;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 1px;
+    background: #88ff00;
+    transition: 0.2s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.system-right {
+    flex: 0;
+    color: #777;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+ <div class="navbar">
+
+    <div class="logo">stxnOS</div>
+
+    <div class="nav-links">
+        <a href="index.html">>index@</a>
+        <a href="dashboard.html">>dashboard@</a>
+        <a href="outputs.html">>outputs@</a>
+    </div>
+
+    <div class="system-right" id="time"></div>
+
+</div>
+
+
+</body>
+
+<script>
+function updateTime() {
+    document.getElementById("time").textContent =
+        new Date().toLocaleTimeString();
+}
+setInterval(updateTime, 1000);
+updateTime();
+
+</script>
+</html>
