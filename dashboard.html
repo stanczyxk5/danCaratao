@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Dashboard</title>
 
 <link rel="stylesheet" href="navbar.css">
@@ -10,7 +11,7 @@
 <style>
 body {
     margin: 0;
-    font-family: "Courier New", Courier, monospace;
+    font-family: "Courier New", monospace;
     background: #000;
     color: #bbffc1;
     display: flex;
@@ -30,43 +31,30 @@ h1 {
     text-shadow: 0 0 10px rgb(136, 255, 0);
 }
 
-/* PANEL */
+
 .panel {
     display: flex;
     gap: 20px;
     margin-top: 40px;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
-/* MAIN BOX */
 .main {
     flex: 2;
     background: #111;
     border: 3px solid #88ff00;
     padding: 50px 30px;
     border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 .main h2 {
     font-size: 90px;
     color: #88ff00;
     margin: 0;
-    line-height: 1;
     text-shadow: 0 0 15px rgb(136, 255, 0);
 }
 
-.main p {
-    font-size: 20px;
-    margin-top: 10px;
-    letter-spacing: 1px;
-}
-
-/* SIDE BOXES */
 .side {
     flex: 1;
     display: flex;
@@ -79,48 +67,29 @@ h1 {
     border: 1px solid #333;
     padding: 18px;
     border-radius: 8px;
-    text-align: center;
 }
 
 .mini h3 {
     color: #88ff00;
     font-size: 32px;
     margin: 0;
-    text-shadow: 0 0 10px rgb(136, 255, 0);
-}
-
-.mini p {
-    margin: 5px 0 0 0;
-    font-size: 14px;
-}
-
-/* NAV LINKS FIX */
-.nav-links a {
-    text-decoration: none;
-}
-
-/* MOBILE */
-@media (max-width: 700px) {
-    .panel {
-        flex-direction: column;
-    }
 }
 </style>
 </head>
 
 <body>
 
+
 <div class="navbar">
     <button class="menu-btn" onclick="toggleMenu()">Menu</button>
 
     <div class="nav-links" id="navLinks">
         <a href="index.html">[Home]</a>
-        <a href="dashboard.html" class="active">[Dashboard]</a>
-        <a href="quiz.html">[Quiz]</a>
-        <a href="lab.html">[Laboratory]</a>
-        <a href="exam.html">[Exam]</a>
+        <a href="dashboard.html">[Dashboard]</a>
+        <a href="outputs.html">[Outputs]</a>
     </div>
 </div>
+
 
 <div class="container">
 
@@ -129,23 +98,23 @@ h1 {
     <div class="panel">
 
         <div class="main">
-            <h2 id="total">>7</h2>
+            <h2>>7</h2>
             <p>>Total Uploads</p>
         </div>
 
         <div class="side">
             <div class="mini">
-                <h3 id="quiz">>3</h3>
+                <h3>>3</h3>
                 <p>Quiz Uploads</p>
             </div>
 
             <div class="mini">
-                <h3 id="lab">>4</h3>
+                <h3>>4</h3>
                 <p>Lab Uploads</p>
             </div>
 
             <div class="mini">
-                <h3 id="exam">>0</h3>
+                <h3>>0</h3>
                 <p>Exam Uploads</p>
             </div>
         </div>
