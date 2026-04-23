@@ -70,6 +70,28 @@ body {
     width: 100%;
     height: 100%;
 }
+.slide a {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.label {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    background: transparent;
+    color: #88ff00;
+  
+    font-size: 14px;
+   
+
+    text-shadow: 0 0 8px #88ff00, 0 0 16px #88ff00;
+   
+}
 
 .slide img {
     width: 100%;
@@ -129,18 +151,21 @@ body {
         <div class="slide active">
             <a href="quiz.html">
                 <img src="image/cat.gif" alt="quiz">
+                <div class="label">>quiz@</div>
             </a>
         </div>
 
         <div class="slide">
             <a href="lab.html">
                 <img src="image/duc.gif" alt="lab">
+                <div class="label">>laboratory$$</div>
             </a>
         </div>
 
         <div class="slide">
             <a href="exam.html">
                 <img src="image/sumthin.gif" alt="exam">
+                <div class="label">>exam&</div>
             </a>
         </div>
 
