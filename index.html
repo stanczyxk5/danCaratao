@@ -23,28 +23,42 @@ body {
 }
 
 
-.navbarkongmalupet {
+.navbar {
     display: flex;
     align-items: center;
+    width: 100%;
     padding: 10px 20px;
     border-bottom: 1px solid #88ff00;
     background: #000;
 }
 
-.system-left {
+.logo {
     color: #88ff00;
     font-weight: bold;
+    flex: 0;
+    white-space: nowrap;
 }
 
-.system-center a {
+.nav-links {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    gap: 18px;
+}
+
+.nav-links a {
     color: #bbffc1;
     text-decoration: none;
-    margin: 0 15px;
+    transition: 0.2s;
     position: relative;
 }
 
+.nav-links a:hover {
+    color: #88ff00;
+    text-shadow: 0 0 6px #88ff00;
+}
 
-.system-center a::after {
+.nav-links a::after {
     content: "";
     position: absolute;
     left: 0;
@@ -55,19 +69,16 @@ body {
     transition: 0.2s;
 }
 
-.system-center a:hover {
-    color: #88ff00;
-}
-
-.system-center a:hover::after {
+.nav-links a:hover::after {
     width: 100%;
 }
 
 .system-right {
-    font-size: 13px;
+    flex: 0;
     color: #777;
+    font-size: 13px;
+    white-space: nowrap;
 }
-
 .profile {
     display: flex;
     align-items: center;
@@ -209,12 +220,12 @@ h2 {
 
 
 
-<div class="navbarkongmalupet">
+<div class="navbar">
 
 
-<div class="system-left">stxnOS</div>
+<div class="logo">stxnOS</div>
 
-<div class="system-center">
+<div class="nav-links">
     <a href="index.html">>index@</a>
     <a href="dashboard.html">>dashboard@</a>
     <a href="outputs.html">>outputs@</a>
