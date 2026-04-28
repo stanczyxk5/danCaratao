@@ -13,27 +13,59 @@ body {
     font-family: "Courier New", monospace;
     background: #000;
     color: #bbffc1;
-     overflow-x: hidden;
-     background-image: url('image/dbbg.gif');
-     background-size: cover;
-  background-position: center;
-  height: 100vh;
-  background-repeat: no-repeat;
+    overflow-x: hidden;
+    background-image: url('image/dbbg.gif');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    background-repeat: no-repeat;
 }
+
 .navbar {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
     width: 100%;
-    padding: 10px 20px;
+    padding: 10px 12px;
     border-bottom: 1px solid #88ff00;
     background: #000;
+    position: relative;
 }
 
 .logo {
     color: #88ff00;
     font-weight: bold;
-    flex: 0;
     white-space: nowrap;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 20px;
+    color: #88ff00;
+    cursor: pointer;
+    position: relative;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.menu-toggle::before,
+.menu-toggle::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.7;
+}
+
+.menu-toggle::before {
+    color: #00ffea;
+    animation: glitch1 0.6s infinite;
+}
+
+.menu-toggle::after {
+    color: #ff008c;
+    animation: glitch2 0.6s infinite;
 }
 
 .nav-links {
@@ -46,13 +78,9 @@ body {
 .nav-links a {
     color: #bbffc1;
     text-decoration: none;
-    transition: 0.2s;
     position: relative;
-}
-
-.nav-links a:hover {
-    color: #88ff00;
-    text-shadow: 0 0 6px #88ff00;
+    display: inline-block;
+    transition: 0.2s;
 }
 
 .nav-links a::after {
@@ -70,40 +98,68 @@ body {
     width: 100%;
 }
 
+.nav-links a:hover {
+    color: #88ff00;
+    text-shadow: 0 0 6px #88ff00;
+}
+
+.nav-links a::before,
+.nav-links a::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.nav-links a::before {
+    color: #00ffea;
+    animation: glitch1 0.6s infinite;
+}
+
+.nav-links a::after {
+    color: #ff008c;
+    animation: glitch2 0.6s infinite;
+}
+
 .system-right {
-    flex: 0;
     color: #777;
     font-size: 13px;
     white-space: nowrap;
 }
 
-
 @media (max-width: 700px) {
-  
 
-  .bigcircle {
-    
-    transform: scale(0.9);
-  }
-  .container {
-    transform: scale(0.9);
-  }
-  .navbar{
-    width: 100%;
-  }
-}
+    .menu-toggle {
+        display: block;
+        left: -20px;
+    }
 
+    .nav-links {
+        position: absolute;
+        top: 50px;
+        right: 10px;
+        flex-direction: column;
+        background: #000;
+        border: 1px solid #88ff00;
+        padding: 10px;
+        display: none;
+        width: 160px;
+        z-index: 100;
+        gap: 8px;
+    }
 
-@media (min-width: 1024px) {
- .mainCircle {
-    
-    transform: scale(1.2) translateY(50px);
-  }
- 
-  .navbar{
-    width: 100%;
-  }
-  
+    .nav-links.active {
+        display: flex;
+    }
+
+    .system-right {
+        width: 100%;
+        text-align: center;
+        margin-top: 4px;
+        font-size: 12px;
+    }
 }
 
 .container {
@@ -118,9 +174,8 @@ h1 {
     text-shadow: 0 0 10px rgb(136, 255, 0);
 }
 
-
 .mainCircle {
-    height: 450px;   
+    height: 450px;
     width: 450px;
     border: 3px solid #88ff00;
     border-radius: 50%;
@@ -128,154 +183,106 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    margin: 40px auto; 
-    z-index: 0;
+    margin: 40px auto;
 }
-
 
 .bigcircle {
     height: 300px;
     width: 300px;
-    background-color: transparent;
-    box-shadow: 5px #88ff00;
-    padding: 30px 30px;
     border-radius: 50%;
-    display: inline-block;
-    margin-top: 10px;
-    box-sizing: border-box;
-    animation: 15s infinite spin linear;
-    
+    animation: spin 15s linear infinite;
+    padding: 30px;
 }
-
-.panel {
-    display: flex;
-    gap: 20px;
-    margin-top: 40px;
-    justify-content: center;
-    align-items: center;
-    
-}
-.circle {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-    
-}
-
-.topc {
-    height: 20px;
-    width: 100px;
-    background: #111;
-    border: 3px solid #88ff00;
-    padding: 30px 30px;
-    border-radius: 5px;
-    display: inline-block;
-    animation: counterSpin 15s linear infinite;
-}
-.wrapper {
-   transform: translateY(-145px);
-   z-index: 2;
-}
-
 
 .main {
     height: 150px;
     width: 150px;
     background: #111;
     border: 3px solid #88ff00;
-    padding: 30px 30px;
     border-radius: 50%;
-    box-shadow: 3px #88ff00;
-     animation: counterSpin 15s linear infinite;
-    
-}
-.mainwrap {
-    
-    transform: translateY(-120px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: counterSpin 15s linear infinite;
 }
 
 .main h3 {
     font-size: 65px;
     color: #88ff00;
     margin: 0;
-    
     text-shadow: 0 0 15px rgb(136, 255, 0);
 }
 
-
-.scircle {
-   display: flex;
-    flex-direction: row;
-    align-items: center;   
-    justify-content: center; 
-    gap: 6px; 
-    text-align: center;
-    transform: translateY(-25PX);
-}
-
-.scircle h2 {
-    color: #88ff00;
-    text-shadow: 0 0 15px rgb(136, 255, 0);
-    margin-right: 10px;
-    
-}
-
-.scircle p {
-   font-size: 19px;
-}
-
-
-.twin {
+.panel {
     display: flex;
-    flex-direction: row;
-      transform: translateY(-180px);
-    
+    flex-direction: column;
+    align-items: center;
 }
 
+.wrapper { transform: translateY(-145px); }
+.mainwrap { transform: translateY(-10px); }
+
+.topc,
+.leftc,
 .rightc {
     height: 20px;
     width: 100px;
     background: #111;
     border: 3px solid #88ff00;
-    padding: 30px 30px;
-    display: inline-block;
-    margin-left: 75px;
+    padding: 30px;
     border-radius: 5px;
+    display: inline-block;
     animation: counterSpin 15s linear infinite;
-
 }
 
-.leftc {
-    height: 20px;
-    width: 100px;
-    background: #111;
-    border: 3px solid #88ff00;
-    padding: 30px 30px;
-    border-radius: 5px;
-    display: inline-block;
-    margin-right: 75px;
-    animation: counterSpin 15s linear infinite;
-    
+.twin {
+    display: flex;
+    transform: translateY(-180px);
+}
+
+.leftc { margin-right: 75px; }
+.rightc { margin-left: 75px; }
+
+.scircle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transform: translateY(-25px);
+}
+
+.scircle h2 {
+    color: #88ff00;
+    text-shadow: 0 0 15px rgb(136, 255, 0);
+}
+
+@keyframes glitch1 {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 1px); }
+  40% { transform: translate(-1px, -1px); }
+  60% { transform: translate(2px, 0); }
+  80% { transform: translate(1px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes glitch2 {
+  0% { transform: translate(0); }
+  20% { transform: translate(2px, -1px); }
+  40% { transform: translate(1px, 1px); }
+  60% { transform: translate(-2px, 0); }
+  80% { transform: translate(-1px, 2px); }
+  100% { transform: translate(0); }
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 @keyframes counterSpin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(-360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
 }
 
 </style>
@@ -284,79 +291,84 @@ h1 {
 <body>
 
 <div class="navbar">
-
     <div class="logo">stxnOS</div>
 
-    <div class="nav-links">
-        <a href="index.html">>index@</a>
-        <a href="dashboard.html">>dashboard@</a>
-        <a href="outputs.html">>outputs@</a>
+    <div class="menu-toggle" id="menuToggle" data-text="1">1</div>
+
+    <div class="nav-links" id="navLinks">
+        <a href="index.html" data-text=">index@">>index@</a>
+        <a href="dashboard.html" data-text=">dashboard@">>dashboard@</a>
+        <a href="outputs.html" data-text=">outputs@">>outputs@</a>
     </div>
 
     <div class="system-right" id="time"></div>
+</div>
+
+<div class="container">
+
+<h1>>Dashboard@@</h1>
+
+<div class="mainCircle">
+    <div class="bigcircle">
+        <div class="panel">
+
+            <div class="wrapper">
+                <div class="topc">
+                    <div class="scircle">
+                        <h2>[3]</h2>
+                        <p>quiz@</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mainwrap">
+                <div class="main">
+                    <h3>[7]</h3>
+                    <p>>Total Uploads</p>
+                </div>
+            </div>
+
+            <div class="twin">
+                <div class="leftc">
+                    <div class="scircle">
+                        <h2>[4]</h2>
+                        <p>>lab@</p>
+                    </div>
+                </div>
+
+                <div class="rightc">
+                    <div class="scircle">
+                        <h2>[0]</h2>
+                        <p>>exam@</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 </div>
 
-
-    <div class="container">
-    
-        <h1>>Dashboard@@</h1>
-          <div class="mainCircle">
-
-          <div class="bigcircle">
-          
-            <div class="panel">
-              <div class="circle">
-              
-                 <div class="wrapper">
-                    <div class="topc">
-                        <div class="scircle">
-                          <h2>[3]</h2>
-                          <p>quiz@</p>
-                        </div>  
-                    </div>
-                 </div> 
-        
-                 <div class="mainwrap">
-                    <div class="main">
-                        <h3>[7]</h3>
-                        <p>>Total Uploads</p>
-                    </div>
-                </div>            
-                
-                <div class="twin">
-                  
-                  <div class="leftc">
-                    <div class="scircle">
-                      <h2>[4]</h2>
-                      <p>>lab@</p>
-                    </div>   
-                  </div>   
-                  
-                  <div class="rightc">
-                    <div class="scircle">   
-                      <h2>[0]</h2>
-                      <p>>exam@</p>
-                    </div>     
-                  </div>   
-                  
-                </div>
-              </div>
-            </div>
-    
-          </div>
-    
-    </div>
-   </div>
-    
-
 <script>
+
 function updateTime() {
     document.getElementById("time").textContent =
         new Date().toLocaleTimeString();
 }
 setInterval(updateTime, 1000);
 updateTime();
+
+const toggle = document.getElementById("menuToggle");
+const nav = document.getElementById("navLinks");
+
+toggle.addEventListener("click", () => {
+    nav.classList.toggle("active");
+
+    toggle.textContent = toggle.textContent === "1" ? "0" : "1";
+    toggle.setAttribute("data-text", toggle.textContent);
+});
+
 </script>
 
 </body>
