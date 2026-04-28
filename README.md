@@ -4,6 +4,8 @@ inspo:
 
 https://open.spotify.com/playlist/4IhQR5B8qsnLaHWd32Vlhc?si=WJtgdD5ZQly_e6MdohjExw&pi=eNbWfBMnQ4ObE
 
+https://open.spotify.com/playlist/4IhQR5B8qsnLaHWd32Vlhc?si=8gcjDyhwRJeU4BKT0tgh3A&pi=uDQZe6SJT-OAP
+
 to fix: 
   * navbar aspect ratio
   * finalize dashboard
