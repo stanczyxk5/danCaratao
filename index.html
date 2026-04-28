@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>CarataoDan</title>
 
 <style>
 
+* {
+    box-sizing: border-box;
+}
+/*fuh u, stinky ahh bih*/
 body {
     margin: 0;
     font-family: "Courier New", Courier, monospace;
@@ -17,17 +19,19 @@ body {
 }
 
 .container {
-    width: 90%;
+    width: 100%;
     max-width: 900px;
-    margin: 20px auto;
+    margin: 10px auto;
+    padding: 0 10px;
 }
-
 
 .navbar {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
     width: 100%;
-    padding: 10px 20px;
+    padding: 10px 12px;
     border-bottom: 1px solid #88ff00;
     background: #000;
 }
@@ -35,8 +39,54 @@ body {
 .logo {
     color: #88ff00;
     font-weight: bold;
-    flex: 0;
     white-space: nowrap;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 20px;
+    color: #88ff00;
+    cursor: pointer;
+    position: relative;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.menu-toggle::before,
+.menu-toggle::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.7;
+}
+
+.menu-toggle::before {
+    color: #00ffea;
+    animation: glitch1 0.6s infinite;
+}
+
+.menu-toggle::after {
+    color: #ff008c;
+    animation: glitch2 0.6s infinite;
+}
+
+@keyframes glitch1 {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 1px); }
+    40% { transform: translate(-1px, -1px); }
+    60% { transform: translate(2px, 0); }
+    80% { transform: translate(1px, -2px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes glitch2 {
+    0% { transform: translate(0); }
+    20% { transform: translate(2px, -1px); }
+    40% { transform: translate(1px, 1px); }
+    60% { transform: translate(-2px, 0); }
+    80% { transform: translate(-1px, 2px); }
+    100% { transform: translate(0); }
 }
 
 .nav-links {
@@ -74,18 +124,18 @@ body {
 }
 
 .system-right {
-    flex: 0;
     color: #777;
     font-size: 13px;
     white-space: nowrap;
 }
+
 .profile {
     display: flex;
     align-items: center;
     gap: 20px;
     background: #111;
     border: 2px solid #88ff00;
-    padding: 25px;
+    padding: 20px;
     border-radius: 8px;
     margin-bottom: 15px;
 }
@@ -104,7 +154,6 @@ body {
     text-shadow: 0 0 10px rgb(136, 255, 0);
 }
 
-
 .grid {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
@@ -114,7 +163,7 @@ body {
 .box {
     background: #111;
     border: 1px solid #333;
-    padding: 20px;
+    padding: 15px;
     border-radius: 8px;
 }
 
@@ -127,7 +176,6 @@ h2 {
     margin-top: 0;
     text-shadow: 0 0 10px rgb(136, 255, 0);
 }
-
 
 #things img {
     width: 100%;
@@ -156,11 +204,10 @@ h2 {
     text-shadow: 0 0 10px rgb(136, 255, 0);
 }
 
-
 #terminal {
     background: #000;
     border: 1px solid #88ff00;
-    padding: 20px;
+    padding: 15px;
     border-radius: 8px;
 }
 
@@ -189,12 +236,85 @@ h2 {
     font-family: "Courier New", monospace;
 }
 
-
 @media (max-width: 700px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .menu-toggle {
+        display: block;
+        
+    }
+
+    .navbar {
+        padding: 8px 10px;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 55px;
+        right: 10px;
+        width: 160px;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        padding: 10px;
+        background: #000;
+        border: 1px solid #88ff00;
+        border-radius: 6px;
+        
+    }
+    .nav-links a {
+    color: #bbffc1;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+}
+
+    .nav-links a::before,
+    .nav-links a::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0.7;
+        pointer-events: none;
+    }
+    
+    .nav-links a::before {
+        color: #00ffea;
+        animation: glitch1 0.6s infinite;
+    }
+    
+    .nav-links a::after {
+        color: #ff008c;
+        animation: glitch2 0.6s infinite;
+    }
+    
+    .nav-links a:hover {
+        color: #88ff00;
+        text-shadow: 0 0 6px #88ff00;
+    }
+
+    .nav-links.active {
+        display: flex;
+        
+    }
+
+
+    .system-right {
+        width: 100%;
+        text-align: center;
+        margin-top: 4px;
+        font-size: 12px;
+    }
 
     .profile {
         flex-direction: column;
         text-align: center;
+        padding: 15px;
     }
 
     .grid {
@@ -213,34 +333,25 @@ h2 {
 }
 
 </style>
-
 </head>
 
 <body>
 
-
-
 <div class="navbar">
-
-
-<div class="logo">stxnOS</div>
-
-<div class="nav-links">
-    <a href="index.html">>index@</a>
-    <a href="dashboard.html">>dashboard@</a>
-    <a href="outputs.html">>outputs@</a>
-</div>
-
-<div class="system-right" id="time"></div>
-
+    <div class="logo">stxnOS</div>
+    <div class="menu-toggle" id="menuToggle" data-text="1">1</div>
+    <div class="nav-links" id="navLinks">
+       <a href="index.html" data-text=">index@">>index@</a>
+        <a href="dashboard.html" data-text=">dashboard@">>dashboard@</a>
+          <a href="outputs.html" data-text=">outputs@">>outputs@</a>
+    </div>
+    <div class="system-right" id="time"></div>
 </div>
 
 <div class="container">
 
-
 <div class="profile">
     <img src="image/IMG_20260418_193825.jpg" alt="Profile">
-
     <div class="profile-text">
         <h2>>Caratao, Dan Elisur M.</h2>
         <p>BS_Computer_Science:CS_1B</p>
@@ -250,80 +361,79 @@ h2 {
 
 <div class="grid">
 
-    <div class="box" id="about">
-        <h2>>Who?</h2>
-        <p>My name is Dan, 20 years old, a first year BS Computer Science student.</p>
-        <p>I like dismantling and rebuilding things, improving through trial and error.</p>
-        <p>Outside of college and school work, I enjoy simple things that help me reset and stay balanced. I value good humor, honesty, and anything that keeps life from being too boring.</p>
-    </div>
+<div class="box" id="about">
+    <h2>>Who?</h2>
+    <p>My name is Dan, 20 years old, a first year BS Computer Science student.</p>
+    <p>I like dismantling and rebuilding things, improving through trial and error.</p>
+    <p>Outside of college and school work, I enjoy simple things that help me reset and stay balanced. I value good humor, honesty, and anything that keeps life from being too boring.</p>
+</div>
 
-    <div class="box" id="things">
-        <img src="image/giphy.gif" alt="dan">
-    </div>
+<div class="box" id="things">
+    <img src="image/giphy.gif" alt="dan">
+</div>
 
-    <div class="box" id="boxx">
+<div class="box" id="boxx">
 
-        <div class="box" id="skills">
-            <h2>>Skills//g:</h2>
-            <ul>
-                <li>C++</li>
-                <li>Visual Basic</li>
-                <li>Java</li>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-            </ul>
-        </div>
+<div class="box" id="skills">
+    <h2>>Skills//g:</h2>
+    <ul>
+        <li>C++</li>
+        <li>Visual Basic</li>
+        <li>Java</li>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ul>
+</div>
 
-        <div class="box" id="hobbies">
-            <h2>>Hobbies//f:</h2>
-            <p>Gaming, Working Out, Music, && Walking at night with my shawti</p>
-        </div>
-
-    </div>
-
-    <div class="box" id="mymedia">
-        <h2>>Media_Rotation$$</h2>
-
-        <h5>>Music#</h5>
-        <ul>
-            <li><i>Runaway Train</i> by Soul Asylum</li>
-            <li><i>Laughing</i> by The Guess Who</li>
-            <li><i>Stranger</i> by Secondhand Serenade</li>
-        </ul>
-
-        <h5>_Podcast$</h5>
-        <ul>
-            <li><i>Let's read</i></li>
-        </ul>
-    </div>
-
-    <div class="box full" id="contact">
-        <h2>>Contact@</h2>
-        <p>Email: danelisur.caratao@cvsu.edu.ph</p>
-        <p>Facebook: facebook.com/eyelessed</p>
-        <p>Instagram: instagram.com/_jcfrappuccino/</p>
-    </div>
-
-    <div class="box full" id="terminal">
-        <div><h2>console.log</h2></div>
-        <div id="output"></div>
-        <div class="input-line">
-            <span>> </span>
-            <input type="text" id="commandInput" placeholder="type here..." autofocus>
-        </div>
-    </div>
+<div class="box" id="hobbies">
+    <h2>>Hobbies//f:</h2>
+    <p>Gaming, Working Out, Music, && Walking at night with my shawti</p>
+</div>
 
 </div>
 
+<div class="box" id="mymedia">
+    <h2>>Media_Rotation$$</h2>
 
+    <h5>>Music#</h5>
+    <ul>
+        <li><i>Runaway Train</i> by Soul Asylum</li>
+        <li><i>Laughing</i> by The Guess Who</li>
+        <li><i>Stranger</i> by Secondhand Serenade</li>
+    </ul>
+
+    <h5>_Podcast$</h5>
+    <ul>
+        <li><i>Let's read</i></li>
+    </ul>
+</div>
+
+<div class="box full" id="contact">
+    <h2>>Contact@</h2>
+    <p>Email: danelisur.caratao@cvsu.edu.ph</p>
+    <p>Facebook: facebook.com/eyelessed</p>
+    <p>Instagram: instagram.com/_jcfrappuccino/</p>
+</div>
+
+<div class="box full" id="terminal">
+    <div><h2>console.log</h2></div>
+    <div id="output"></div>
+    <div class="input-line">
+        <span>> </span>
+        <input type="text" id="commandInput" placeholder="type here..." autofocus>
+    </div>
+</div>
+
+</div>
 </div>
 
 <script>
 
 const input = document.getElementById("commandInput");
 const output = document.getElementById("output");
-
+const toggle = document.getElementById("menuToggle");
+const nav = document.getElementById("navLinks");
 
 const commands = {
     help: "Available: help, more, whoami, fedc, fav, fmotto, fquote, neofetch, clear, matrix",
@@ -346,7 +456,6 @@ function printLine(text) {
 input.addEventListener("keydown", function(e) {
     if (e.key === "Enter") {
         const cmd = input.value.trim().toLowerCase();
-
         printLine("> " + cmd);
 
         if (cmd === "clear") {
@@ -359,6 +468,18 @@ input.addEventListener("keydown", function(e) {
 
         input.value = "";
         output.scrollTop = output.scrollHeight;
+    }
+});
+
+toggle.addEventListener("click", () => {
+    nav.classList.toggle("active");
+
+    if (toggle.textContent === "1") {
+        toggle.textContent = "0";
+        toggle.setAttribute("data-text", "0");
+    } else {
+        toggle.textContent = "1";
+        toggle.setAttribute("data-text", "1");
     }
 });
 
