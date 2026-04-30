@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Dashboard</title>
 
 <style>
@@ -17,7 +16,7 @@ body {
     background-image: url('image/dbbg.gif');
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    min-height: 100vh;
     background-repeat: no-repeat;
 }
 
@@ -80,47 +79,6 @@ body {
     text-decoration: none;
     position: relative;
     display: inline-block;
-    transition: 0.2s;
-}
-
-.nav-links a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0%;
-    height: 1px;
-    background: #88ff00;
-    transition: 0.2s;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-.nav-links a:hover {
-    color: #88ff00;
-    text-shadow: 0 0 6px #88ff00;
-}
-
-.nav-links a::before,
-.nav-links a::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0.7;
-    pointer-events: none;
-}
-
-.nav-links a::before {
-    color: #00ffea;
-    animation: glitch1 0.6s infinite;
-}
-
-.nav-links a::after {
-    color: #ff008c;
-    animation: glitch2 0.6s infinite;
 }
 
 .system-right {
@@ -160,6 +118,11 @@ body {
         margin-top: 4px;
         font-size: 12px;
     }
+
+    .scaleWrap {
+        transform: scale(calc(100vw / 520));
+        transform-origin: top center;
+    }
 }
 
 .container {
@@ -171,19 +134,29 @@ body {
 
 h1 {
     color: #88ff00;
-    text-shadow: 0 0 10px rgb(136, 255, 0);
+}
+
+.scaleWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
 }
 
 .mainCircle {
-    height: 450px;
     width: 450px;
+    aspect-ratio: 1 / 1;
     border: 3px solid #88ff00;
     border-radius: 50%;
     background-image: url('image/mtrx.gif');
+    background-size: cover;
+    background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 40px auto;
+    flex-shrink: 0;
 }
 
 .bigcircle {
@@ -209,9 +182,8 @@ h1 {
 
 .main h3 {
     font-size: 65px;
-    color: #88ff00;
     margin: 0;
-    text-shadow: 0 0 15px rgb(136, 255, 0);
+    color: #88ff00;
 }
 
 .panel {
@@ -220,7 +192,7 @@ h1 {
     align-items: center;
 }
 
-.wrapper { transform: translateY(-145px); }
+.wrapper { transform: translateY(-100px); }
 .mainwrap { transform: translateY(-10px); }
 
 .topc,
@@ -252,26 +224,15 @@ h1 {
     transform: translateY(-25px);
 }
 
-.scircle h2 {
-    color: #88ff00;
-    text-shadow: 0 0 15px rgb(136, 255, 0);
-}
-
 @keyframes glitch1 {
   0% { transform: translate(0); }
-  20% { transform: translate(-2px, 1px); }
-  40% { transform: translate(-1px, -1px); }
-  60% { transform: translate(2px, 0); }
-  80% { transform: translate(1px, -2px); }
+  50% { transform: translate(-2px, 1px); }
   100% { transform: translate(0); }
 }
 
 @keyframes glitch2 {
   0% { transform: translate(0); }
-  20% { transform: translate(2px, -1px); }
-  40% { transform: translate(1px, 1px); }
-  60% { transform: translate(-2px, 0); }
-  80% { transform: translate(-1px, 2px); }
+  50% { transform: translate(2px, -1px); }
   100% { transform: translate(0); }
 }
 
@@ -292,22 +253,21 @@ h1 {
 
 <div class="navbar">
     <div class="logo">stxnOS</div>
-
     <div class="menu-toggle" id="menuToggle" data-text="1">1</div>
 
     <div class="nav-links" id="navLinks">
-        <a href="index.html" data-text=">index@">>index@</a>
-        <a href="dashboard.html" data-text=">dashboard@">>dashboard@</a>
-        <a href="outputs.html" data-text=">outputs@">>outputs@</a>
+        <a href="index.html">>index@</a>
+        <a href="dashboard.html">>dashboard@</a>
+        <a href="outputs.html">>outputs@</a>
     </div>
 
     <div class="system-right" id="time"></div>
 </div>
 
 <div class="container">
-
 <h1>>Dashboard@@</h1>
 
+<div class="scaleWrap">
 <div class="mainCircle">
     <div class="bigcircle">
         <div class="panel">
@@ -347,11 +307,11 @@ h1 {
         </div>
     </div>
 </div>
+</div>
 
 </div>
 
 <script>
-
 function updateTime() {
     document.getElementById("time").textContent =
         new Date().toLocaleTimeString();
@@ -364,11 +324,9 @@ const nav = document.getElementById("navLinks");
 
 toggle.addEventListener("click", () => {
     nav.classList.toggle("active");
-
     toggle.textContent = toggle.textContent === "1" ? "0" : "1";
     toggle.setAttribute("data-text", toggle.textContent);
 });
-
 </script>
 
 </body>
