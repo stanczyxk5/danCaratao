@@ -7,17 +7,19 @@
 
 <style>
 
-body {
+html, body {
     margin: 0;
+    padding: 0;
+    width: 100%;
     font-family: "Courier New", monospace;
     background: #000;
     color: #bbffc1;
     overflow-x: hidden;
-    background-image: url('image/dbbg.gif');
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh;
-    background-repeat: no-repeat;
+    overflow-y: hidden;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
 .navbar {
@@ -29,7 +31,6 @@ body {
     padding: 10px 12px;
     border-bottom: 1px solid #88ff00;
     background: #000;
-    position: relative;
 }
 
 .logo {
@@ -77,8 +78,11 @@ body {
 .nav-links a {
     color: #bbffc1;
     text-decoration: none;
-    position: relative;
-    display: inline-block;
+}
+
+.nav-links a:hover {
+    color: #88ff00;
+    text-shadow: 0 0 6px #88ff00;
 }
 
 .system-right {
@@ -91,21 +95,21 @@ body {
 
     .menu-toggle {
         display: block;
-        left: -20px;
     }
 
     .nav-links {
         position: absolute;
-        top: 50px;
+        top: 55px;
         right: 10px;
+        width: 160px;
+        display: none;
         flex-direction: column;
+        gap: 6px;
+        padding: 10px;
         background: #000;
         border: 1px solid #88ff00;
-        padding: 10px;
-        display: none;
-        width: 160px;
-        z-index: 100;
-        gap: 8px;
+        border-radius: 6px;
+        z-index: 1000;
     }
 
     .nav-links.active {
@@ -118,15 +122,9 @@ body {
         margin-top: 4px;
         font-size: 12px;
     }
-
-    .scaleWrap {
-        transform: scale(calc(100vw / 520));
-        transform-origin: top center;
-    }
 }
 
 .container {
-    width: 90%;
     max-width: 900px;
     margin: 40px auto;
     text-align: center;
@@ -134,116 +132,158 @@ body {
 
 h1 {
     color: #88ff00;
-}
-
-.scaleWrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    overflow: hidden;
+    text-shadow: 0 0 10px rgb(136, 255, 0);
 }
 
 .mainCircle {
-    width: 450px;
-    aspect-ratio: 1 / 1;
-    border: 3px solid #88ff00;
+    width: min(420px, 90vw);
+    height: min(420px, 90vw);
+    margin: 40px auto;
+    position: relative;
     border-radius: 50%;
-    background-image: url('image/mtrx.gif');
+    border: 3px solid #88ff00;
+    background-image: url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3BkeHZnMThhNGhuOHdvdGlkeWxjem1ieG5wZG91MjBtb2l1OW85OSZlcD12MV9pbnRlcm5hbGZfYnlfaWQmY3Q9Zw/QKDpE67Rc7rpjBmQPj/giphy.gif');
     background-size: cover;
     background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 40px auto;
-    flex-shrink: 0;
 }
 
-.bigcircle {
-    height: 300px;
-    width: 300px;
-    border-radius: 50%;
-    animation: spin 15s linear infinite;
-    padding: 30px;
-}
-
-.main {
-    height: 150px;
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
     width: 150px;
-    background: #111;
-    border: 3px solid #88ff00;
+    height: 150px;
+    transform: translate(-50%, -50%);
     border-radius: 50%;
+    border: 3px solid #88ff00;
+    background: #111;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    animation: counterSpin 15s linear infinite;
+    z-index: 10;
 }
 
-.main h3 {
-    font-size: 65px;
+.center h3 {
     margin: 0;
+    font-size: 50px;
+    color: #88ff00;
+    text-shadow: 0 0 10px rgb(136, 255, 0);
+}
+
+.orbit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: spin 15s linear infinite;
+    z-index: 5;
+}
+
+.node {
+    position: absolute;
+    width: 200px;
+    height: 80px;
+    z-index: 6;
+}
+
+.node-inner {
+    width: 100%;
+    height: 100%;
+    background: #111;
+    border: 3px solid #88ff00;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    animation: counterSpin 15s linear infinite;
+    color: #88ff00;
+    position: relative;
+    z-index: 7;
+}
+
+.node-inner h3 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.node-inner p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.node:nth-child(1) {
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.node:nth-child(2) {
+    top: 50%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+}
+
+.node:nth-child(3) {
+    top: 50%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+}
+
+.glitch-num {
+    position: relative;
+    display: inline-block;
     color: #88ff00;
 }
 
-.panel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.glitch-num::before,
+.glitch-num::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.7;
+    pointer-events: none;
 }
 
-.wrapper { transform: translateY(-100px); }
-.mainwrap { transform: translateY(-10px); }
-
-.topc,
-.leftc,
-.rightc {
-    height: 20px;
-    width: 100px;
-    background: #111;
-    border: 3px solid #88ff00;
-    padding: 30px;
-    border-radius: 5px;
-    display: inline-block;
-    animation: counterSpin 15s linear infinite;
+.glitch-num::before {
+    color: #00ffea;
+    animation: glitch1 0.6s infinite;
 }
 
-.twin {
-    display: flex;
-    transform: translateY(-180px);
-}
-
-.leftc { margin-right: 75px; }
-.rightc { margin-left: 75px; }
-
-.scircle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    transform: translateY(-25px);
-}
-
-@keyframes glitch1 {
-  0% { transform: translate(0); }
-  50% { transform: translate(-2px, 1px); }
-  100% { transform: translate(0); }
-}
-
-@keyframes glitch2 {
-  0% { transform: translate(0); }
-  50% { transform: translate(2px, -1px); }
-  100% { transform: translate(0); }
+.glitch-num::after {
+    color: #ff008c;
+    animation: glitch2 0.6s infinite;
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 @keyframes counterSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(-360deg); }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+@keyframes glitch1 {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 1px); }
+    40% { transform: translate(-1px, -1px); }
+    60% { transform: translate(2px, 0); }
+    80% { transform: translate(1px, -2px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes glitch2 {
+    0% { transform: translate(0); }
+    20% { transform: translate(2px, -1px); }
+    40% { transform: translate(1px, 1px); }
+    60% { transform: translate(-2px, 0); }
+    80% { transform: translate(-1px, 2px); }
+    100% { transform: translate(0); }
 }
 
 </style>
@@ -254,64 +294,71 @@ h1 {
 <div class="navbar">
     <div class="logo">stxnOS</div>
     <div class="menu-toggle" id="menuToggle" data-text="1">1</div>
-
     <div class="nav-links" id="navLinks">
         <a href="index.html">>index@</a>
         <a href="dashboard.html">>dashboard@</a>
         <a href="outputs.html">>outputs@</a>
     </div>
-
     <div class="system-right" id="time"></div>
 </div>
 
 <div class="container">
+
 <h1>>Dashboard@@</h1>
 
-<div class="scaleWrap">
 <div class="mainCircle">
-    <div class="bigcircle">
-        <div class="panel">
 
-            <div class="wrapper">
-                <div class="topc">
-                    <div class="scircle">
-                        <h2>[3]</h2>
-                        <p>quiz@</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mainwrap">
-                <div class="main">
-                    <h3>[7]</h3>
-                    <p>>Total Uploads</p>
-                </div>
-            </div>
-
-            <div class="twin">
-                <div class="leftc">
-                    <div class="scircle">
-                        <h2>[4]</h2>
-                        <p>>lab@</p>
-                    </div>
-                </div>
-
-                <div class="rightc">
-                    <div class="scircle">
-                        <h2>[0]</h2>
-                        <p>>exam@</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+    <div class="center">
+        <h3>[7]</h3>
+        <p>Total</p>
     </div>
-</div>
+
+    <div class="orbit">
+
+        <div class="node">
+            <div class="node-inner">
+                <h3 class="glitch-num" data-text="[3]">[3]</h3>
+                <p>Quiz</p>
+            </div>
+        </div>
+
+        <div class="node">
+            <div class="node-inner">
+                <h3 class="glitch-num" data-text="[4]">[4]</h3>
+                <p>Lab</p>
+            </div>
+        </div>
+
+        <div class="node">
+            <div class="node-inner">
+                <h3 class="glitch-num" data-text="[0]">[0]</h3>
+                <p>Exam</p>
+            </div>
+        </div>
+
+    </div>
+
 </div>
 
 </div>
 
 <script>
+
+const toggle = document.getElementById("menuToggle");
+const nav = document.getElementById("navLinks");
+
+toggle.addEventListener("click", () => {
+    nav.classList.toggle("active");
+
+    if (toggle.textContent === "1") {
+        toggle.textContent = "0";
+        toggle.setAttribute("data-text", "0");
+    } else {
+        toggle.textContent = "1";
+        toggle.setAttribute("data-text", "1");
+    }
+});
+
 function updateTime() {
     document.getElementById("time").textContent =
         new Date().toLocaleTimeString();
@@ -319,14 +366,6 @@ function updateTime() {
 setInterval(updateTime, 1000);
 updateTime();
 
-const toggle = document.getElementById("menuToggle");
-const nav = document.getElementById("navLinks");
-
-toggle.addEventListener("click", () => {
-    nav.classList.toggle("active");
-    toggle.textContent = toggle.textContent === "1" ? "0" : "1";
-    toggle.setAttribute("data-text", toggle.textContent);
-});
 </script>
 
 </body>
