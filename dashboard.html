@@ -6,16 +6,15 @@
 <title>Dashboard</title>
 
 <style>
-body {
-  background-image: url('image/dbbg.gif');
-}
 html, body {
-  
     margin: 0;
     padding: 0;
     width: 100%;
     font-family: "Courier New", monospace;
-    background: #000;
+
+    background: url("image/dbbg.gif") no-repeat center center fixed;
+    background-size: cover;
+
     color: #bbffc1;
     overflow-x: hidden;
     overflow-y: hidden;
@@ -155,6 +154,14 @@ html, body {
 }
 
 @media (max-width: 700px) {
+  
+ 
+    html, body {
+        background-position: center center;
+        background-attachment: scroll; /* important for mobile stability */
+        background-size: cover;
+    }
+
 
     .menu-toggle {
         display: block;
