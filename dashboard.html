@@ -10,12 +10,18 @@ html, body {
     margin: 0;
     padding: 0;
     width: 100%;
+    height: 100%;
+
     font-family: "Courier New", monospace;
 
-    background: url("image/dbbg.gif") no-repeat center center fixed;
+    background: url("https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWJ3bnQ4cmhkY2p2aDJ3bDBwZmtvMGZxcHJybXNocG9sb3BtMzcyayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QKDpE67Rc7rpjBmQPj/giphy.gif")
+        no-repeat center center;
+
     background-size: cover;
+    background-color: #000;
 
     color: #bbffc1;
+
     overflow-x: hidden;
     overflow-y: hidden;
 }
@@ -88,7 +94,6 @@ html, body {
     100% { transform: translate(0); }
 }
 
-/* NAV LINKS */
 
 .nav-links {
     display: flex;
@@ -125,8 +130,6 @@ html, body {
     width: 100%;
 }
 
-/* GLOBAL GLITCH (PC + MOBILE) */
-
 .nav-links a::before,
 .nav-links a::after {
     content: attr(data-text);
@@ -153,15 +156,15 @@ html, body {
     white-space: nowrap;
 }
 
-@media (max-width: 700px) {
-  
- 
-    html, body {
-        background-position: center center;
-        background-attachment: scroll; /* important for mobile stability */
-        background-size: cover;
-    }
 
+@media (max-width: 700px) {
+
+    html, body {
+        height: 100dvh;
+        background-position: center;
+        background-size: cover;
+        background-attachment: scroll;
+    }
 
     .menu-toggle {
         display: block;
@@ -212,7 +215,7 @@ h1 {
     position: relative;
     border-radius: 50%;
     border: 3px solid #88ff00;
-    background-image: url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3BkeHZnMThhNGhuOHdvdGlkeWxjem1ieG5wZG91MjBtb2l1OW85OSZlcD12MV9pbnRlcm5hbGZfYnlfaWQmY3Q9Zw/QKDpE67Rc7rpjBmQPj/giphy.gif');
+    background-image: url('https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3YWF4YTJwZXNka3BidXNwd3ZjeDlxOTJybDg1Z2dnanY1c3BtY3RqYiZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/3oKIPlCroSFHV8uoko/giphy.gif');
     background-size: cover;
     background-position: center;
     top: 30px;
@@ -273,36 +276,6 @@ h1 {
     position: relative;
     z-index: 7;
 }
-
-.node-inner h3 {
-    margin: 0;
-    font-size: 22px;
-}
-
-.node-inner p {
-    margin: 0;
-    font-size: 14px;
-    opacity: 0.9;
-}
-
-.node:nth-child(1) {
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.node:nth-child(2) {
-    top: 50%;
-    left: 10%;
-    transform: translate(-50%, -50%);
-}
-
-.node:nth-child(3) {
-    top: 50%;
-    left: 90%;
-    transform: translate(-50%, -50%);
-}
-
 .glitch-num {
     position: relative;
     display: inline-block;
@@ -329,6 +302,25 @@ h1 {
     animation: glitch2 0.6s infinite;
 }
 
+
+.node:nth-child(1) {
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.node:nth-child(2) {
+    top: 50%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+}
+
+.node:nth-child(3) {
+    top: 50%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+}
+
 @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
@@ -339,24 +331,6 @@ h1 {
     to { transform: rotate(-360deg); }
 }
 
-@keyframes glitch1 {
-    0% { transform: translate(0); }
-    20% { transform: translate(-2px, 1px); }
-    40% { transform: translate(-1px, -1px); }
-    60% { transform: translate(2px, 0); }
-    80% { transform: translate(1px, -2px); }
-    100% { transform: translate(0); }
-}
-
-@keyframes glitch2 {
-    0% { transform: translate(0); }
-    20% { transform: translate(2px, -1px); }
-    40% { transform: translate(1px, 1px); }
-    60% { transform: translate(-2px, 0); }
-    80% { transform: translate(-1px, 2px); }
-    100% { transform: translate(0); }
-}
-
 </style>
 </head>
 
@@ -364,17 +338,19 @@ h1 {
 
 <div class="navbar">
     <div class="logo">stxnOS</div>
+
     <div class="menu-toggle" id="menuToggle" data-text="1">1</div>
+
     <div class="nav-links" id="navLinks">
-       <a href="index.html" data-text=">index@">>index@</a>
+        <a href="index.html" data-text=">index@">>index@</a>
         <a href="dashboard.html" data-text=">dashboard@">>dashboard@</a>
         <a href="outputs.html" data-text=">outputs@">>outputs@</a>
     </div>
+
     <div class="system-right" id="time"></div>
 </div>
 
 <div class="container">
-
 <h1>>Dashboard@@</h1>
 
 <div class="mainCircle">
@@ -410,24 +386,17 @@ h1 {
     </div>
 
 </div>
-
 </div>
 
 <script>
-
 const toggle = document.getElementById("menuToggle");
 const nav = document.getElementById("navLinks");
 
 toggle.addEventListener("click", () => {
     nav.classList.toggle("active");
 
-    if (toggle.textContent === "1") {
-        toggle.textContent = "0";
-        toggle.setAttribute("data-text", "0");
-    } else {
-        toggle.textContent = "1";
-        toggle.setAttribute("data-text", "1");
-    }
+    toggle.textContent = toggle.textContent === "1" ? "0" : "1";
+    toggle.setAttribute("data-text", toggle.textContent);
 });
 
 function updateTime() {
@@ -436,7 +405,6 @@ function updateTime() {
 }
 setInterval(updateTime, 1000);
 updateTime();
-
 </script>
 
 </body>
