@@ -8,6 +8,7 @@
 <style>
 
 html, body {
+  background-image: url('image/dbbg.gif');
     margin: 0;
     padding: 0;
     width: 100%;
@@ -68,6 +69,26 @@ html, body {
     animation: glitch2 0.6s infinite;
 }
 
+@keyframes glitch1 {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 1px); }
+    40% { transform: translate(-1px, -1px); }
+    60% { transform: translate(2px, 0); }
+    80% { transform: translate(1px, -2px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes glitch2 {
+    0% { transform: translate(0); }
+    20% { transform: translate(2px, -1px); }
+    40% { transform: translate(1px, 1px); }
+    60% { transform: translate(-2px, 0); }
+    80% { transform: translate(-1px, 2px); }
+    100% { transform: translate(0); }
+}
+
+/* NAV LINKS */
+
 .nav-links {
     display: flex;
     flex: 1;
@@ -78,11 +99,51 @@ html, body {
 .nav-links a {
     color: #bbffc1;
     text-decoration: none;
+    transition: 0.2s;
+    position: relative;
+    display: inline-block;
 }
 
 .nav-links a:hover {
     color: #88ff00;
     text-shadow: 0 0 6px #88ff00;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 1px;
+    background: #88ff00;
+    transition: 0.2s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* GLOBAL GLITCH (PC + MOBILE) */
+
+.nav-links a::before,
+.nav-links a::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.nav-links a::before {
+    color: #00ffea;
+    animation: glitch1 0.6s infinite;
+}
+
+.nav-links a::after {
+    color: #ff008c;
+    animation: glitch2 0.6s infinite;
 }
 
 .system-right {
@@ -145,6 +206,7 @@ h1 {
     background-image: url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3BkeHZnMThhNGhuOHdvdGlkeWxjem1ieG5wZG91MjBtb2l1OW85OSZlcD12MV9pbnRlcm5hbGZfYnlfaWQmY3Q9Zw/QKDpE67Rc7rpjBmQPj/giphy.gif');
     background-size: cover;
     background-position: center;
+    top: 30px;
 }
 
 .center {
@@ -295,9 +357,9 @@ h1 {
     <div class="logo">stxnOS</div>
     <div class="menu-toggle" id="menuToggle" data-text="1">1</div>
     <div class="nav-links" id="navLinks">
-        <a href="index.html">>index@</a>
-        <a href="dashboard.html">>dashboard@</a>
-        <a href="outputs.html">>outputs@</a>
+       <a href="index.html" data-text=">index@">>index@</a>
+        <a href="dashboard.html" data-text=">dashboard@">>dashboard@</a>
+        <a href="outputs.html" data-text=">outputs@">>outputs@</a>
     </div>
     <div class="system-right" id="time"></div>
 </div>
