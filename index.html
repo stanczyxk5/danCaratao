@@ -10,7 +10,7 @@
 * {
     box-sizing: border-box;
 }
-/*too much?, hell naw*/
+
 body {
     margin: 0;
     font-family: "Courier New", Courier, monospace;
@@ -89,8 +89,6 @@ body {
     100% { transform: translate(0); }
 }
 
-/* NAV LINKS */
-
 .nav-links {
     display: flex;
     flex: 1;
@@ -125,8 +123,6 @@ body {
 .nav-links a:hover::after {
     width: 100%;
 }
-
-/* GLOBAL GLITCH (PC + MOBILE) */
 
 .nav-links a::before,
 .nav-links a::after {
@@ -165,12 +161,37 @@ body {
     margin-bottom: 15px;
 }
 
-.profile img {
+.ctscan {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.ctscan img {
+    display: block;
     width: 140px;
     height: 180px;
     object-fit: cover;
     border: 2px solid #88ff00;
     border-radius: 6px;
+}
+
+.ctscan::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -100%;
+    width: 100%;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, rgba(136, 255, 0, 0.9), transparent);
+    box-shadow: 0 0 10px #88ff00, 0 0 20px #88ff00;
+    opacity: 0.8;
+    animation: scanDown 2.2s linear infinite;
+}
+
+@keyframes scanDown {
+    0% { top: -100%; }
+    100% { top: 100%; }
 }
 
 .profile-text h2 {
@@ -228,6 +249,7 @@ h2 {
     color: #88ff00;
     text-shadow: 0 0 10px rgb(136, 255, 0);
 }
+
 .media-header {
     display: flex;
     align-items: center;
@@ -245,7 +267,6 @@ h2 {
     align-items: center;
     justify-content: center;
 }
-
 
 .play-btn::before,
 .play-btn::after {
@@ -305,8 +326,6 @@ h2 {
     font-family: "Courier New", monospace;
 }
 
-
-
 @media (max-width: 700px) {
 
     body {
@@ -365,17 +384,31 @@ h2 {
     #hobbies {
         width: 100%;
     }
-   
 }
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #88ff00;
+    font-weight: bold;
 }
 
+.logo img {
+    height: 40px; 
+    width: auto;
+    display: block;
+    
+}
 </style>
 </head>
 
 <body>
 
 <div class="navbar">
-    <div class="logo">stxnOS</div>
+     <div class="logo">
+        <img src="image/ionkno.gif" alt="logo">
+        <span>stxnOS</span>
+    </div>
     <div class="menu-toggle" id="menuToggle" data-text="1">1</div>
     <div class="nav-links" id="navLinks">
        <a href="index.html" data-text=">index@">>index@</a>
@@ -388,12 +421,14 @@ h2 {
 <div class="container">
 
 <div class="profile">
+  <div class="ctscan">
     <img src="image/IMG_20260418_193825.jpg" alt="Profile">
-    <div class="profile-text">
+  </div>
+  <div class="profile-text">
         <h2>>Caratao, Dan Elisur M.</h2>
         <p>BS_Computer_Science:CS_1B</p>
         <p>Student_No:251100796</p>
-    </div>
+  </div>
 </div>
 
 <div class="grid">
@@ -444,17 +479,18 @@ width="100%" height="152" frameborder="0"
 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
 </iframe>
 </div>
-    <h5>>Music#</h5>
-    <ul>
-        <li><i>Runaway Train</i> by Soul Asylum</li>
-        <li><i>Laughing</i> by The Guess Who</li>
-        <li><i>Stranger</i> by Secondhand Serenade</li>
-    </ul>
 
-    <h5>_Podcast$</h5>
-    <ul>
-        <li><i>Let's read</i></li>
-    </ul>
+<h5>>Music#</h5>
+<ul>
+<li><i>Runaway Train</i> by Soul Asylum</li>
+<li><i>Laughing</i> by The Guess Who</li>
+<li><i>Stranger</i> by Secondhand Serenade</li>
+</ul>
+
+<h5>_Podcast$</h5>
+<ul>
+<li><i>Let's read</i></li>
+</ul>
 </div>
 
 <div class="box full" id="contact">
@@ -477,8 +513,8 @@ allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-pictur
 </div>
 
 <script>
-  
-  const playBtn = document.getElementById("playBtn");
+
+const playBtn = document.getElementById("playBtn");
 const spotifyBox = document.getElementById("spotifyBox");
 
 playBtn.addEventListener("click", () => {
@@ -498,7 +534,7 @@ const commands = {
     fedc: "elem[bssPes] -> H_schl[Binhs] -> S_schl[PhiltecH]",
     fav: "Camel, Marlboro, Bacteria Monster, Maxx Candy(green), my bb, Hayley",
     fmotto: "fuh this shi, it is what it is.",
-    fquote: "“He who is not contented with what he has, would not be contented with what he would like to have.” - socramftes",
+    fquote: "He who is not contented with what he has, would not be contented with what he would like to have. - socramftes",
     neofetch: "User: daniboei\nage: 20\ncourse: bscs\nstatus: still_grinding();",
     matrix: "there is no spoon."
 };
@@ -549,6 +585,7 @@ function updateTime() {
     document.getElementById("time").textContent =
         new Date().toLocaleTimeString();
 }
+
 setInterval(updateTime, 1000);
 updateTime();
 
