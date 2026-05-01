@@ -337,8 +337,8 @@ h2 {
     }
 
     .navbar {
-        padding: 8px 10px;
-    }
+    position: relative;
+}
 
     .nav-links {
         position: absolute;
@@ -361,13 +361,6 @@ h2 {
         display: flex;
     }
 
-    .system-right {
-        width: 100%;
-        text-align: center;
-        margin-top: 4px;
-        font-size: 12px;
-    }
-
     .profile {
         flex-direction: column;
         text-align: center;
@@ -385,7 +378,16 @@ h2 {
     #skills,
     #hobbies {
         width: 100%;
+    
     }
+    #time {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #777;
+    font-size: 13px;
+}
+   
 }
 .logo {
     display: flex;
