@@ -17,6 +17,33 @@ body {
     background-color: #000;
     color: #bbffc1;
 }
+#loader {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#matrix {
+    position: absolute;
+    inset: 0;
+    opacity: 0.50;
+    display: none;
+}
+
+#loaderText {
+    color: #88ff00;
+    font-size: 20px;
+    letter-spacing: 2px;
+    z-index: 2;
+    text-shadow: 0 0 20px rgb(136, 255, 0);
+    font-weight: bold;
+    
+}
 
 .container {
     width: 100%;
@@ -402,11 +429,21 @@ h2 {
     width: auto;
     display: block;
     
+    
 }
+#matrix {
+    position: absolute;
+    inset: 0;
+}
+
 </style>
 </head>
 
 <body>
+<div id="loader">
+    <canvas id="matrix"></canvas>
+    <div id="loaderText">>0_</div>
+</div>
 
 <div class="navbar">
      <div class="logo">
@@ -592,6 +629,69 @@ function updateTime() {
 
 setInterval(updateTime, 1000);
 updateTime();
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let letters = "01".split("");
+let fontSize = 14;
+let columns = Math.floor(canvas.width / fontSize);
+let drops = Array(columns).fill(1);
+
+function drawMatrix(){
+    ctx.fillStyle = "rgba(0,0,0,0.08)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle = "#88ff00";
+    ctx.font = fontSize + "px monospace";
+
+    for(let i=0;i<drops.length;i++){
+        let char = letters[Math.floor(Math.random()*letters.length)];
+        ctx.fillText(char, i*fontSize, drops[i]*fontSize);
+
+        if(drops[i]*fontSize > canvas.height && Math.random()>0.975){
+            drops[i]=0;
+        }
+
+        drops[i]++;
+    }
+}
+
+const loader = document.getElementById("loader");
+const text = document.getElementById("loaderText");
+
+let count = 0;
+
+let load = setInterval(() => {
+
+    count++;
+    text.textContent = "> " + count + "_";
+
+    if(count >= 100){
+        clearInterval(load);
+
+        text.textContent = "> The matrix has you.";
+
+        setTimeout(() => {
+
+            document.getElementById("matrix").style.display = "block";
+
+            let matrixLoop = setInterval(drawMatrix, 30);
+
+            loader.style.transition = "1.5s ease-in-out";
+            loader.style.opacity = "0";
+
+            setTimeout(() => {
+                clearInterval(matrixLoop);
+                loader.style.display = "none";
+            }, 1500);
+
+        }, 900);
+    }
+
+}, 20);
 
 </script>
 
