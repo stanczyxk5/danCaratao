@@ -330,14 +330,27 @@ h1 {
     from { transform: rotate(0deg); }
     to { transform: rotate(-360deg); }
 }
+.logo {
+    display: flex;
+    align-items: center;
+}
 
+.logo img {
+    height: 40px; 
+    width: auto;
+    display: block;
+    
+}
 </style>
 </head>
 
 <body>
 
 <div class="navbar">
-    <div class="logo">stxnOS</div>
+    <div class="logo">
+    <img src="image/ionkno.gif" alt="logo">
+    <span>stxnOS</span>
+</div>
 
     <div class="menu-toggle" id="menuToggle" data-text="1">1</div>
 
