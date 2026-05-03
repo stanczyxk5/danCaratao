@@ -1,699 +1,789 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CarataoDan</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarataoDan</title>
 
-<style>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-* {
-    box-sizing: border-box;
-}
+        body {
+            margin: 0;
+            font-family: "Courier New", Courier, monospace;
+            background-color: #000;
+            color: #bbffc1;
+        }
 
-body {
-    margin: 0;
-    font-family: "Courier New", Courier, monospace;
-    background-color: #000;
-    color: #bbffc1;
-}
-#loader {
-    position: fixed;
-    inset: 0;
-    background: #000;
-    z-index: 99999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
+        #matrix-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            opacity: 0.5;
+            pointer-events: none;
+        }
 
-#matrix {
-    position: absolute;
-    inset: 0;
-    opacity: 0.50;
-    display: none;
-}
+        #matrix {
+            position: absolute;
+            inset: 0;
+            opacity: 0.50;
+            display: none;
+        }
 
-#loaderText {
-    color: #88ff00;
-    font-size: 20px;
-    letter-spacing: 2px;
-    z-index: 2;
-    text-shadow: 0 0 20px rgb(136, 255, 0);
-    font-weight: bold;
-    
-}
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-.container {
-    width: 100%;
-    max-width: 900px;
-    margin: 10px auto;
-    padding: 0 10px;
-}
+        #matrix-loader {
+            position: absolute;
+            inset: 0;
+            opacity: 0.5;
+        }
 
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    width: 100%;
-    padding: 10px 12px;
-    border-bottom: 1px solid #88ff00;
-    background: #000;
-}
+        #loaderText {
+            color: #88ff00;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 0 0 20px #88ff00;
+            z-index: 2;
+        }
 
-.logo {
-    color: #88ff00;
-    font-weight: bold;
-    white-space: nowrap;
-}
 
-.menu-toggle {
-    display: none;
-    font-size: 20px;
-    color: #88ff00;
-    cursor: pointer;
-    position: relative;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin: 10px auto;
+            padding: 0 10px;
+        }
 
-.menu-toggle::before,
-.menu-toggle::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0.7;
-}
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 100%;
+            padding: 10px 12px;
+            border-bottom: 1px solid #88ff00;
+            background: #000;
+        }
 
-.menu-toggle::before {
-    color: #00ffea;
-    animation: glitch1 0.6s infinite;
-}
+        .logo {
+            color: #88ff00;
+            font-weight: bold;
+            white-space: nowrap;
+        }
 
-.menu-toggle::after {
-    color: #ff008c;
-    animation: glitch2 0.6s infinite;
-}
+        .menu-toggle {
+            display: none;
+            font-size: 20px;
+            color: #88ff00;
+            cursor: pointer;
+            position: relative;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
 
-@keyframes glitch1 {
-    0% { transform: translate(0); }
-    20% { transform: translate(-2px, 1px); }
-    40% { transform: translate(-1px, -1px); }
-    60% { transform: translate(2px, 0); }
-    80% { transform: translate(1px, -2px); }
-    100% { transform: translate(0); }
-}
+        .menu-toggle::before,
+        .menu-toggle::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0.7;
+        }
 
-@keyframes glitch2 {
-    0% { transform: translate(0); }
-    20% { transform: translate(2px, -1px); }
-    40% { transform: translate(1px, 1px); }
-    60% { transform: translate(-2px, 0); }
-    80% { transform: translate(-1px, 2px); }
-    100% { transform: translate(0); }
-}
+        .menu-toggle::before {
+            color: #00ffea;
+            animation: glitch1 0.6s infinite;
+        }
 
-.nav-links {
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    gap: 18px;
-}
+        .menu-toggle::after {
+            color: #ff008c;
+            animation: glitch2 0.6s infinite;
+        }
 
-.nav-links a {
-    color: #bbffc1;
-    text-decoration: none;
-    transition: 0.2s;
-    position: relative;
-    display: inline-block;
-}
+        @keyframes glitch1 {
+            0% {
+                transform: translate(0);
+            }
 
-.nav-links a:hover {
-    color: #88ff00;
-    text-shadow: 0 0 6px #88ff00;
-}
+            20% {
+                transform: translate(-2px, 1px);
+            }
 
-.nav-links a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0%;
-    height: 1px;
-    background: #88ff00;
-    transition: 0.2s;
-}
+            40% {
+                transform: translate(-1px, -1px);
+            }
 
-.nav-links a:hover::after {
-    width: 100%;
-}
+            60% {
+                transform: translate(2px, 0);
+            }
 
-.nav-links a::before,
-.nav-links a::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0.7;
-    pointer-events: none;
-}
+            80% {
+                transform: translate(1px, -2px);
+            }
 
-.nav-links a::before {
-    color: #00ffea;
-    animation: glitch1 0.6s infinite;
-}
+            100% {
+                transform: translate(0);
+            }
+        }
 
-.nav-links a::after {
-    color: #ff008c;
-    animation: glitch2 0.6s infinite;
-}
+        @keyframes glitch2 {
+            0% {
+                transform: translate(0);
+            }
 
-.system-right {
-    color: #777;
-    font-size: 13px;
-    white-space: nowrap;
-}
+            20% {
+                transform: translate(2px, -1px);
+            }
 
-.profile {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    background: #111;
-    border: 2px solid #88ff00;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
+            40% {
+                transform: translate(1px, 1px);
+            }
 
-.ctscan {
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
-}
+            60% {
+                transform: translate(-2px, 0);
+            }
 
-.ctscan img {
-    display: block;
-    width: 140px;
-    height: 180px;
-    object-fit: cover;
-    border: 2px solid #88ff00;
-    border-radius: 6px;
-}
+            80% {
+                transform: translate(-1px, 2px);
+            }
 
-.ctscan::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: -100%;
-    width: 100%;
-    height: 40px;
-    background: linear-gradient(to bottom, transparent, rgba(136, 255, 0, 0.9), transparent);
-    box-shadow: 0 0 10px #88ff00, 0 0 20px #88ff00;
-    opacity: 0.8;
-    animation: scanDown 2.2s linear infinite;
-}
+            100% {
+                transform: translate(0);
+            }
+        }
 
-@keyframes scanDown {
-    0% { top: -100%; }
-    100% { top: 100%; }
-}
+        .nav-links {
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            gap: 18px;
+        }
 
-.profile-text h2 {
-    margin: 0;
-    color: #88ff00;
-    text-shadow: 0 0 10px rgb(136, 255, 0);
-}
+        .nav-links a {
+            color: #bbffc1;
+            text-decoration: none;
+            transition: 0.2s;
+            position: relative;
+            display: inline-block;
+        }
 
-.grid {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 15px;
-}
+        .nav-links a:hover {
+            color: #88ff00;
+            text-shadow: 0 0 6px #88ff00;
+        }
 
-.box {
-    background: #111;
-    border: 1px solid #333;
-    padding: 15px;
-    border-radius: 8px;
-}
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0%;
+            height: 1px;
+            background: #88ff00;
+            transition: 0.2s;
+        }
 
-.full {
-    grid-column: 1 / -1;
-}
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
-h2 {
-    color: #88ff00;
-    margin-top: 0;
-    text-shadow: 0 0 10px rgb(136, 255, 0);
-}
+        .nav-links a::before,
+        .nav-links a::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0.7;
+            pointer-events: none;
+        }
 
-#things img {
-    width: 100%;
-    max-width: 200px;
-    height: auto;
-    object-fit: contain;
-    border: 2px solid #88ff00;
-    border-radius: 4px;
-    display: block;
-    margin: 0 auto;
-}
+        .nav-links a::before {
+            color: #00ffea;
+            animation: glitch1 0.6s infinite;
+        }
 
-#boxx {
-    display: flex;
-    gap: 15px;
-}
+        .nav-links a::after {
+            color: #ff008c;
+            animation: glitch2 0.6s infinite;
+        }
 
-#skills,
-#hobbies {
-    width: 50%;
-}
+        .system-right {
+            color: #777;
+            font-size: 13px;
+            white-space: nowrap;
+        }
 
-#mymedia h5 {
-    margin: 0;
-    color: #88ff00;
-    text-shadow: 0 0 10px rgb(136, 255, 0);
-}
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: #111;
+            border: 2px solid #88ff00;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
 
-.media-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
+        .ctscan {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
 
-.play-btn {
-    cursor: pointer;
-    color: #88ff00;
-    font-weight: bold;
-    position: relative;
-    width: 30px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        .ctscan img {
+            display: block;
+            width: 140px;
+            height: 180px;
+            object-fit: cover;
+            border: 2px solid #88ff00;
+            border-radius: 6px;
+        }
 
-.play-btn::before,
-.play-btn::after {
-    content: "{play}";
-    position: absolute;
-    left: -30px;
-    top: -10px;
-}
+        .ctscan::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: -100%;
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, rgba(136, 255, 0, 0.9), transparent);
+            box-shadow: 0 0 10px #88ff00, 0 0 20px #88ff00;
+            opacity: 0.8;
+            animation: scanDown 2.2s linear infinite;
+        }
 
-.play-btn::before {
-    color: #00ffea;
-    animation: glitch1 0.6s infinite;
-}
+        @keyframes scanDown {
+            0% {
+                top: -100%;
+            }
 
-.play-btn::after {
-    color: #ff008c;
-    animation: glitch2 0.6s infinite;
-}
+            100% {
+                top: 100%;
+            }
+        }
 
-#spotifyBox {
-    display: none;
-    margin-top: 10px;
-    border: 2px solid #88ff00;
-    padding: 10px;
-    background: #000;
-}
+        .profile-text h2 {
+            margin: 0;
+            color: #88ff00;
+            text-shadow: 0 0 10px rgb(136, 255, 0);
+        }
 
-#terminal {
-    background: #000;
-    border: 1px solid #88ff00;
-    padding: 15px;
-    border-radius: 8px;
-}
+        .grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 15px;
+        }
 
-#output {
-    height: 160px;
-    overflow-y: auto;
-    margin-bottom: 10px;
-}
+        .box {
+            background: #111;
+            border: 1px solid #333;
+            padding: 15px;
+            border-radius: 8px;
+        }
 
-.input-line {
-    display: flex;
-    align-items: center;
-}
+        .full {
+            grid-column: 1 / -1;
+        }
 
-.input-line span {
-    color: #88ff00;
-    margin-right: 5px;
-}
+        h2 {
+            color: #88ff00;
+            margin-top: 0;
+            text-shadow: 0 0 10px rgb(136, 255, 0);
+        }
 
-#commandInput {
-    width: 100%;
-    background: transparent;
-    color: #bbffc1;
-    border: none;
-    outline: none;
-    font-family: "Courier New", monospace;
-}
+        #things img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            object-fit: contain;
+            border: 2px solid #88ff00;
+            border-radius: 4px;
+            display: block;
+            margin: 0 auto;
+        }
 
-@media (max-width: 700px) {
+        #boxx {
+            display: flex;
+            gap: 15px;
+        }
 
-    body {
-        overflow-x: hidden;
-    }
+        #skills,
+        #hobbies {
+            width: 50%;
+        }
 
-    .menu-toggle {
-        display: block;
-    }
+        #mymedia h5 {
+            margin: 0;
+            color: #88ff00;
+            text-shadow: 0 0 10px rgb(136, 255, 0);
+        }
 
-    .navbar {
-    position: relative;
-}
+        .media-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-    .nav-links {
-        position: absolute;
-        top: 55px;
-        right: 10px;
-        width: 160px;
-        display: none;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-        padding: 10px;
-        background: #000;
-        border: 1px solid #88ff00;
-        border-radius: 6px;
-        z-index: 9999;
-    }
-    
+        .play-btn {
+            cursor: pointer;
+            color: #88ff00;
+            font-weight: bold;
+            position: relative;
+            width: 30px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    .nav-links.active {
-        display: flex;
-    }
+        .play-btn::before,
+        .play-btn::after {
+            content: "{play}";
+            position: absolute;
+            left: -30px;
+            top: -10px;
+        }
 
-    .profile {
-        flex-direction: column;
-        text-align: center;
-        padding: 15px;
-    }
+        .play-btn::before {
+            color: #00ffea;
+            animation: glitch1 0.6s infinite;
+        }
 
-    .grid {
-        grid-template-columns: 1fr;
-    }
+        .play-btn::after {
+            color: #ff008c;
+            animation: glitch2 0.6s infinite;
+        }
 
-    #boxx {
-        flex-direction: column;
-    }
+        #spotifyBox {
+            display: none;
+            margin-top: 10px;
+            border: 2px solid #88ff00;
+            padding: 10px;
+            background: #000;
+        }
 
-    #skills,
-    #hobbies {
-        width: 100%;
-    
-    }
-    #time {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #777;
-    font-size: 13px;
-}
-   
-}
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #88ff00;
-    font-weight: bold;
-}
+        #terminal {
+            background: #000;
+            border: 1px solid #88ff00;
+            padding: 15px;
+            border-radius: 8px;
+        }
 
-.logo img {
-    height: 40px; 
-    width: auto;
-    display: block;
-    
-    
-}
-#matrix {
-    position: absolute;
-    inset: 0;
-}
+        #output {
+            height: 160px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
 
-</style>
+        .input-line {
+            display: flex;
+            align-items: center;
+        }
+
+        .input-line span {
+            color: #88ff00;
+            margin-right: 5px;
+        }
+
+        #commandInput {
+            width: 100%;
+            background: transparent;
+            color: #bbffc1;
+            border: none;
+            outline: none;
+            font-family: "Courier New", monospace;
+        }
+
+        @media (max-width: 700px) {
+
+            body {
+                overflow-x: hidden;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .navbar {
+                position: relative;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 55px;
+                right: 10px;
+                width: 160px;
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+                padding: 10px;
+                background: #000;
+                border: 1px solid #88ff00;
+                border-radius: 6px;
+                z-index: 9999;
+            }
+
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .profile {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            #boxx {
+                flex-direction: column;
+            }
+
+            #skills,
+            #hobbies {
+                width: 100%;
+
+            }
+
+            #time {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                color: #777;
+                font-size: 13px;
+            }
+
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #88ff00;
+            font-weight: bold;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            display: block;
+
+
+        }
+
+        #matrix {
+            position: absolute;
+            inset: 0;
+        }
+    </style>
 </head>
 
 <body>
-<div id="loader">
-    <canvas id="matrix"></canvas>
-    <div id="loaderText">>0_</div>
-</div>
+    <canvas id="matrix-bg"></canvas>
 
-<div class="navbar">
-     <div class="logo">
-        <img src="image/ionkno.gif" alt="logo">
-        <span>stxnOS</span>
+    <div id="loader">
+        <canvas id="matrix-loader"></canvas>
+        <div id="loaderText">>0_</div>
     </div>
-    <div class="menu-toggle" id="menuToggle" data-text="1">1</div>
-    <div class="nav-links" id="navLinks">
-       <a href="index.html" data-text=">index@">>index@</a>
-        <a href="dashboard.html" data-text=">dashboard@">>dashboard@</a>
-        <a href="outputs.html" data-text=">outputs@">>outputs@</a>
+
+    <div class="navbar">
+        <div class="logo">
+            <img src="image/ionkno.gif" alt="logo">
+            <span>stxnOS</span>
+        </div>
+        <div class="menu-toggle" id="menuToggle" data-text="1">1</div>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" data-text=">index@">>index@</a>
+            <a href="dashboard.html" data-text=">dashboard@">>dashboard@</a>
+            <a href="outputs.html" data-text=">outputs@">>outputs@</a>
+        </div>
+        <div class="system-right" id="time"></div>
     </div>
-    <div class="system-right" id="time"></div>
-</div>
 
-<div class="container">
+    <div class="container">
 
-<div class="profile">
-  <div class="ctscan">
-    <img src="image/IMG_20260418_193825.jpg" alt="Profile">
-  </div>
-  <div class="profile-text">
-        <h2>>Caratao, Dan Elisur M.</h2>
-        <p>BS_Computer_Science:CS_1B</p>
-        <p>Student_No:251100796</p>
-  </div>
-</div>
+        <div class="profile">
+            <div class="ctscan">
+                <img src="image/IMG_20260418_193825.jpg" alt="Profile">
+            </div>
+            <div class="profile-text">
+                <h2>>Caratao, Dan Elisur M.</h2>
+                <p>BS_Computer_Science:CS_1B</p>
+                <p>Student_No:251100796</p>
+            </div>
+        </div>
 
-<div class="grid">
+        <div class="grid">
 
-<div class="box" id="about">
-    <h2>>Who?</h2>
-    <p>My name is Dan, 20 years old, a first year BS Computer Science student.</p>
-    <p>I like dismantling and rebuilding things, improving through trial and error.</p>
-    <p>Outside of college and school work, I enjoy simple things that help me reset and stay balanced. I value good humor, honesty, and anything that keeps life from being too boring.</p>
-</div>
+            <div class="box" id="about">
+                <h2>>Who?</h2>
+                <p>My name is Dan, 20 years old, a first year BS Computer Science student.</p>
+                <p>I like dismantling and rebuilding things, improving through trial and error.</p>
+                <p>Outside of college and school work, I enjoy simple things that help me reset and stay balanced. I value good humor, honesty, and anything that keeps life from being too boring.</p>
+            </div>
 
-<div class="box" id="things">
-    <img src="image/giphy.gif" alt="dan">
-</div>
+            <div class="box" id="things">
+                <img src="image/giphy.gif" alt="dan">
+            </div>
 
-<div class="box" id="boxx">
+            <div class="box" id="boxx">
 
-<div class="box" id="skills">
-    <h2>>Skills//g:</h2>
-    <ul>
-        <li>C++</li>
-        <li>Visual Basic</li>
-        <li>Java</li>
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>JavaScript</li>
-    </ul>
-</div>
+                <div class="box" id="skills">
+                    <h2>>Skills//g:</h2>
+                    <ul>
+                        <li>C++</li>
+                        <li>Visual Basic</li>
+                        <li>Java</li>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                    </ul>
+                </div>
 
-<div class="box" id="hobbies">
-    <h2>>Hobbies//f:</h2>
-    <p>Gaming, Working Out, Music, && Walking at night with my shawti</p>
-</div>
+                <div class="box" id="hobbies">
+                    <h2>>Hobbies//f:</h2>
+                    <p>Gaming, Working Out, Music, && Walking at night with my shawti</p>
+                </div>
 
-</div>
+            </div>
 
-<div class="box" id="mymedia">
-   
-<div class="media-header">
-   <h2>>Media_Rotation$$</h2>
-    <div class="play-btn" id="playBtn"></div>
-</div>
+            <div class="box" id="mymedia">
 
-<div id="spotifyBox">
-<iframe style="border-radius:12px"
-src="https://open.spotify.com/embed/playlist/4IhQR5B8qsnLaHWd32Vlhc?si=8gcjDyhwRJeU4BKT0tgh3A&pi=uDQZe6SJT-OAP"
-width="100%" height="152" frameborder="0"
-allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-</iframe>
-</div>
+                <div class="media-header">
+                    <h2>>Media_Rotation$$</h2>
+                    <div class="play-btn" id="playBtn"></div>
+                </div>
 
-<h5>>Music#</h5>
-<ul>
-<li><i>Runaway Train</i> by Soul Asylum</li>
-<li><i>Laughing</i> by The Guess Who</li>
-<li><i>Stranger</i> by Secondhand Serenade</li>
-</ul>
+                <div id="spotifyBox">
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4IhQR5B8qsnLaHWd32Vlhc?si=8gcjDyhwRJeU4BKT0tgh3A&pi=uDQZe6SJT-OAP" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+                    </iframe>
+                </div>
 
-<h5>_Podcast$</h5>
-<ul>
-<li><i>Let's read</i></li>
-</ul>
-</div>
+                <h5>>Music#</h5>
+                <ul>
+                    <li><i>Runaway Train</i> by Soul Asylum</li>
+                    <li><i>Laughing</i> by The Guess Who</li>
+                    <li><i>Stranger</i> by Secondhand Serenade</li>
+                </ul>
 
-<div class="box full" id="contact">
-    <h2>>Contact@</h2>
-    <p>Email: danelisur.caratao@cvsu.edu.ph</p>
-    <p>Facebook: facebook.com/eyelessed</p>
-    <p>Instagram: instagram.com/_jcfrappuccino/</p>
-</div>
+                <h5>_Podcast$</h5>
+                <ul>
+                    <li><i>Let's read</i></li>
+                </ul>
+            </div>
 
-<div class="box full" id="terminal">
-    <div><h2>console.log</h2></div>
-    <div id="output"></div>
-    <div class="input-line">
-        <span>> </span>
-        <input type="text" id="commandInput" placeholder="type here..." autofocus>
+            <div class="box full" id="contact">
+                <h2>>Contact@</h2>
+                <p>Email: danelisur.caratao@cvsu.edu.ph</p>
+                <p>Facebook: facebook.com/eyelessed</p>
+                <p>Instagram: instagram.com/_jcfrappuccino/</p>
+            </div>
+
+            <div class="box full" id="terminal">
+                <div>
+                    <h2>console.log</h2>
+                </div>
+                <div id="output"></div>
+                <div class="input-line">
+                    <span>> </span>
+                    <input type="text" id="commandInput" placeholder="type here..." autofocus>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
 
-</div>
-</div>
+    <script>
+        const playBtn = document.getElementById("playBtn");
+        const spotifyBox = document.getElementById("spotifyBox");
 
-<script>
+        playBtn.addEventListener("click", () => {
+            spotifyBox.style.display =
+                spotifyBox.style.display === "block" ? "none" : "block";
+        });
 
-const playBtn = document.getElementById("playBtn");
-const spotifyBox = document.getElementById("spotifyBox");
+        const input = document.getElementById("commandInput");
+        const output = document.getElementById("output");
+        const toggle = document.getElementById("menuToggle");
+        const nav = document.getElementById("navLinks");
 
-playBtn.addEventListener("click", () => {
-    spotifyBox.style.display =
-        spotifyBox.style.display === "block" ? "none" : "block";
-});
+        const commands = {
+            help: "Available: help, more, whoami, fedc, fav, fmotto, fquote, neofetch, clear, matrix",
+            more: "I'm into playing guitar, making art, watching movies, reading biographies of dead, influential people",
+            whoami: "born 9th of dec, 2005, i grew up in silang, cavite. studied my way to college and is currently taking bscs in cvsu-silang",
+            fedc: "elem[bssPes] -> H_schl[Binhs] -> S_schl[PhiltecH]",
+            fav: "Camel, Marlboro, Bacteria Monster, Maxx Candy(green), my bb, Hayley",
+            fmotto: "fuh this shi, it is what it is.",
+            fquote: "He who is not contented with what he has, would not be contented with what he would like to have. - socramftes",
+            neofetch: "User: daniboei\nage: 20\ncourse: bscs\nstatus: still_grinding();",
+            matrix: "there is no spoon."
+        };
 
-const input = document.getElementById("commandInput");
-const output = document.getElementById("output");
-const toggle = document.getElementById("menuToggle");
-const nav = document.getElementById("navLinks");
-
-const commands = {
-    help: "Available: help, more, whoami, fedc, fav, fmotto, fquote, neofetch, clear, matrix",
-    more: "I'm into playing guitar, making art, watching movies, reading biographies of dead, influential people",
-    whoami: "born 9th of dec, 2005, i grew up in silang, cavite. studied my way to college and is currently taking bscs in cvsu-silang",
-    fedc: "elem[bssPes] -> H_schl[Binhs] -> S_schl[PhiltecH]",
-    fav: "Camel, Marlboro, Bacteria Monster, Maxx Candy(green), my bb, Hayley",
-    fmotto: "fuh this shi, it is what it is.",
-    fquote: "He who is not contented with what he has, would not be contented with what he would like to have. - socramftes",
-    neofetch: "User: daniboei\nage: 20\ncourse: bscs\nstatus: still_grinding();",
-    matrix: "there is no spoon."
-};
-
-function printLine(text) {
-    const line = document.createElement("div");
-    line.textContent = text;
-    output.appendChild(line);
-}
-
-input.addEventListener("keydown", function(e) {
-    if (e.key === "Enter") {
-        const cmd = input.value.trim().toLowerCase();
-        printLine("> " + cmd);
-
-        if (cmd === "clear") {
-            output.innerHTML = "";
-        } else if (commands[cmd]) {
-            printLine(commands[cmd]);
-        } else {
-            printLine("Command not found. Type 'help'");
+        function printLine(text) {
+            const line = document.createElement("div");
+            line.textContent = text;
+            output.appendChild(line);
         }
 
-        input.value = "";
-        output.scrollTop = output.scrollHeight;
-    }
-});
+        input.addEventListener("keydown", function(e) {
+            if (e.key === "Enter") {
+                const cmd = input.value.trim().toLowerCase();
+                printLine("> " + cmd);
 
-toggle.addEventListener("click", () => {
-    nav.classList.toggle("active");
+                if (cmd === "clear") {
+                    output.innerHTML = "";
+                } else if (commands[cmd]) {
+                    printLine(commands[cmd]);
+                } else {
+                    printLine("Command not found. Type 'help'");
+                }
 
-    if (toggle.textContent === "1") {
-        toggle.textContent = "0";
-        toggle.setAttribute("data-text", "0");
-    } else {
-        toggle.textContent = "1";
-        toggle.setAttribute("data-text", "1");
-    }
-});
+                input.value = "";
+                output.scrollTop = output.scrollHeight;
+            }
+        });
 
-window.onload = () => {
-    printLine("booting ballsOSv6.9...");
-    printLine("yo: gurt:$");
-    printLine("Wake up, neo.");
-};
+        toggle.addEventListener("click", () => {
+            nav.classList.toggle("active");
 
-function updateTime() {
-    document.getElementById("time").textContent =
-        new Date().toLocaleTimeString();
-}
+            if (toggle.textContent === "1") {
+                toggle.textContent = "0";
+                toggle.setAttribute("data-text", "0");
+            } else {
+                toggle.textContent = "1";
+                toggle.setAttribute("data-text", "1");
+            }
+        });
 
-setInterval(updateTime, 1000);
-updateTime();
-const canvas = document.getElementById("matrix");
-const ctx = canvas.getContext("2d");
+        window.onload = () => {
+            printLine("booting ballsOSv6.9...");
+            printLine("yo: gurt:$");
+            printLine("Wake up, neo.");
+        };
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
 
-let letters = "01".split("");
-let fontSize = 14;
-let columns = Math.floor(canvas.width / fontSize);
-let drops = Array(columns).fill(1);
+        let letters = "01";
+        let fontSize = 14;
 
-function drawMatrix(){
-    ctx.fillStyle = "rgba(0,0,0,0.08)";
-    ctx.fillRect(0,0,canvas.width,canvas.height);
+        const bgCanvas = document.getElementById("matrix-bg");
+        const bgCtx = bgCanvas.getContext("2d");
 
-    ctx.fillStyle = "#88ff00";
-    ctx.font = fontSize + "px monospace";
+        bgCanvas.width = window.innerWidth;
+        bgCanvas.height = window.innerHeight;
 
-    for(let i=0;i<drops.length;i++){
-        let char = letters[Math.floor(Math.random()*letters.length)];
-        ctx.fillText(char, i*fontSize, drops[i]*fontSize);
+        let bgColumns = Math.floor(bgCanvas.width / fontSize);
+        let bgDrops = Array(bgColumns).fill(1);
 
-        if(drops[i]*fontSize > canvas.height && Math.random()>0.975){
-            drops[i]=0;
+        function drawMatrixBg() {
+            bgCtx.fillStyle = "rgba(0,0,0,0.08)";
+            bgCtx.fillRect(0, 0, bgCanvas.width, bgCanvas.height);
+
+            bgCtx.fillStyle = "#88ff00";
+            bgCtx.font = fontSize + "px monospace";
+
+            for (let i = 0; i < bgDrops.length; i++) {
+                let char = letters[Math.floor(Math.random() * letters.length)];
+                bgCtx.fillText(char, i * fontSize, bgDrops[i] * fontSize);
+
+                if (bgDrops[i] * fontSize > bgCanvas.height && Math.random() > 0.975) {
+                    bgDrops[i] = 0;
+                }
+
+                bgDrops[i]++;
+            }
         }
 
-        drops[i]++;
-    }
-}
+        setInterval(drawMatrixBg, 35);
 
-const loader = document.getElementById("loader");
-const text = document.getElementById("loaderText");
+        const loaderCanvas = document.getElementById("matrix-loader");
+        const loaderCtx = loaderCanvas.getContext("2d");
 
-let count = 0;
+        loaderCanvas.width = window.innerWidth;
+        loaderCanvas.height = window.innerHeight;
 
-let load = setInterval(() => {
+        let loaderColumns = Math.floor(loaderCanvas.width / fontSize);
+        let loaderDrops = Array(loaderColumns).fill(1);
 
-    count++;
-    text.textContent = "> " + count + "_";
+        function drawMatrixLoader() {
+            loaderCtx.fillStyle = "rgba(0,0,0,0.08)";
+            loaderCtx.fillRect(0, 0, loaderCanvas.width, loaderCanvas.height);
 
-    if(count >= 100){
-        clearInterval(load);
+            loaderCtx.fillStyle = "#88ff00";
+            loaderCtx.font = fontSize + "px monospace";
 
-        text.textContent = "> The matrix has you.";
+            for (let i = 0; i < loaderDrops.length; i++) {
+                let char = letters[Math.floor(Math.random() * letters.length)];
+                loaderCtx.fillText(char, i * fontSize, loaderDrops[i] * fontSize);
 
-        setTimeout(() => {
+                if (loaderDrops[i] * fontSize > loaderCanvas.height && Math.random() > 0.975) {
+                    loaderDrops[i] = 0;
+                }
 
-            document.getElementById("matrix").style.display = "block";
+                loaderDrops[i]++;
+            }
+        }
 
-            let matrixLoop = setInterval(drawMatrix, 30);
+        let matrixLoop = setInterval(drawMatrixLoader, 30);
 
-            loader.style.transition = "1.5s ease-in-out";
-            loader.style.opacity = "0";
+        const loader = document.getElementById("loader");
+        const text = document.getElementById("loaderText");
 
-            setTimeout(() => {
-                clearInterval(matrixLoop);
-                loader.style.display = "none";
-            }, 1500);
+        let count = 0;
 
-        }, 900);
-    }
+        let load = setInterval(() => {
+            count++;
+            text.textContent = "> " + count + "_";
 
-}, 20);
+            if (count >= 100) {
+                clearInterval(load);
 
-</script>
+                text.textContent = "> The matrix has you.";
+
+                setTimeout(() => {
+                    loader.style.transition = "1.5s";
+                    loader.style.opacity = "0";
+
+                    setTimeout(() => {
+                        clearInterval(matrixLoop);
+                        loader.style.display = "none";
+                    }, 1500);
+
+                }, 800);
+            }
+        }, 20);
+
+        function updateTime() {
+            document.getElementById("time").textContent =
+                new Date().toLocaleTimeString();
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        window.addEventListener("resize", () => {
+            bgCanvas.width = window.innerWidth;
+            bgCanvas.height = window.innerHeight;
+
+            loaderCanvas.width = window.innerWidth;
+            loaderCanvas.height = window.innerHeight;
+        });
+    </script>
 
 </body>
+
 </html>
