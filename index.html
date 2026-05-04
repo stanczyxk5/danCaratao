@@ -76,7 +76,7 @@
             background: #000;
         }
 
-        .logo {
+        .logo, #flogo{
             color: #88ff00;
             font-weight: bold;
             white-space: nowrap;
@@ -228,11 +228,12 @@
             display: flex;
             align-items: center;
             gap: 20px;
-            background: #111;
+            background-color:  rgba(17, 17, 17, 60%);
             border: 2px solid #88ff00;
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 15px;
+            
         }
 
         .ctscan {
@@ -490,6 +491,89 @@
             position: absolute;
             inset: 0;
         }
+      #slog a {
+    color: #88ff00;
+    text-shadow: 0 0 20px #88ff00, 50%;
+    text-decoration: none;
+    position: relative;
+}
+
+#slog a::before,
+#slog a::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#slog a::before {
+    color: #00ffea;
+    animation: glitch1 0.6s infinite;
+}
+
+#slog a::after {
+    color: #ff008c;
+    animation: glitch2 0.6s infinite;
+}
+
+        .footer {
+            border-top: 1px solid #88ff00;
+            margin-top: 30px;
+            padding: 20px;
+            background: #000;
+            box-shadow: 0 -10px 30px rgba(136, 255, 0, 0.08);
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #88ff00;
+            font-weight: bold;
+        }
+
+        .footer-logo img {
+            height: 35px;
+        }
+
+        .footer-mid a {
+            display: block;
+            color: #bbffc1;
+            text-decoration: none;
+            margin: 4px 0;
+        }
+
+        .footer-mid a:hover {
+            color: #88ff00;
+        }
+
+        .footer-title {
+            color: #88ff00;
+        }
+        .footercontact{
+             color: #88ff00;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 12px;
+            color: #555;
+            border-top: 1px solid #222;
+            padding-top: 10px;
+        }
+    
+}
+        
     </style>
 </head>
 
@@ -525,6 +609,9 @@
                 <h2>>Caratao, Dan Elisur M.</h2>
                 <p>BS_Computer_Science:CS_1B</p>
                 <p>Student_No:251100796</p>
+                <div class="shortcut" id="slog">
+                <a href="#terminal" data-text="console.log">console.log</a>
+                </div>
             </div>
         </div>
 
@@ -587,12 +674,7 @@
                 </ul>
             </div>
 
-            <div class="box full" id="contact">
-                <h2>>Contact@</h2>
-                <p>Email: danelisur.caratao@cvsu.edu.ph</p>
-                <p>Facebook: facebook.com/eyelessed</p>
-                <p>Instagram: instagram.com/_jcfrappuccino/</p>
-            </div>
+           
 
             <div class="box full" id="terminal">
                 <div>
@@ -623,11 +705,11 @@
         const nav = document.getElementById("navLinks");
 
         const commands = {
-            help: "Available: help, more, whoami, fedc, fav, fmotto, fquote, neofetch, clear, matrix",
+            help: "Available: help, more, whoami, fedc, fav, fmotto, fquote, neofetch, goto quiz, goto lab, goto exam, clear, matrix",
             more: "I'm into playing guitar, making art, watching movies, reading biographies of dead, influential people",
             whoami: "born 9th of dec, 2005, i grew up in silang, cavite. studied my way to college and is currently taking bscs in cvsu-silang",
             fedc: "elem[bssPes] -> H_schl[Binhs] -> S_schl[PhiltecH]",
-            fav: "Camel, Marlboro, Bacteria Monster, Maxx Candy(green), my bb, Hayley",
+            fav: "ion kno, Hayley",
             fmotto: "fuh this shi, it is what it is.",
             fquote: "He who is not contented with what he has, would not be contented with what he would like to have. - socramftes",
             neofetch: "User: daniboei\nage: 20\ncourse: bscs\nstatus: still_grinding();",
@@ -647,7 +729,29 @@
 
                 if (cmd === "clear") {
                     output.innerHTML = "";
-                } else if (commands[cmd]) {
+                }
+                else if (cmd === "goto quiz") {
+                    printLine("opening quiz...");
+                     setTimeout(() => {
+                          window.location.href ="quiz.html";
+                      }, 700);
+                }
+                
+                 else if (cmd === "goto lab") {
+                    printLine("opening laboratories...");
+                     setTimeout(() => {
+                          window.location.href ="lab.html";
+                      }, 700);
+                }
+                
+                 else if (cmd === "goto exam") {
+                    printLine("opening exam...");
+                     setTimeout(() => {
+                          window.location.href ="exam.html";
+                      }, 700);
+                }
+                
+                else if (commands[cmd]) {
                     printLine(commands[cmd]);
                 } else {
                     printLine("Command not found. Type 'help'");
@@ -671,9 +775,9 @@
         });
 
         window.onload = () => {
-            printLine("booting ballsOSv6.9...");
-            printLine("yo: gurt:$");
-            printLine("Wake up, neo.");
+            printLine("booting StxnOSv6.0069...");
+            printLine("something changed.");
+            printLine("Wake up, Neo.");
         };
 
 
@@ -783,6 +887,44 @@
             loaderCanvas.height = window.innerHeight;
         });
     </script>
+
+  <footer class="footer">
+
+        <div class="footer-inner">
+
+            <div>
+                <div class="footer-logo">
+                    <img src="image/ionkno.gif">
+                    <span>stxnOS</span>
+                </div>
+                <p style="color:#777; font-size:12px;">
+                    > status: unplugged
+                    > _
+                </p>
+            </div>
+
+            <div class="footer-mid">
+                <p class="footer-title">>works$/p>
+                <a href="quiz.html">quiz.sys</a>
+                <a href="lab.html">lab.sys</a>
+                <a href="exam.html">exam.sys</a>
+            </div>
+
+              <div class="footer-contact">
+            <p class="footercontact">>contact@</p>
+            <p>Email: danelisur.caratao@cvsu.edu.ph</p>
+            <p>Facebook: facebook.com/eyelessed</p>
+            <p>Instagram: instagram.com/_jcfrappuccino/</p>
+        </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 stxnOS 
+        </div>
+
+    </footer>
+
 
 </body>
 
