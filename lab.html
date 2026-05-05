@@ -5,16 +5,178 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Laboratory</title>
 
-<link rel="stylesheet" href="navbar.css">
+
 
 <style>
-
+* {
+            box-sizing: border-box;
+        }
 body {
     margin: 0;
     font-family: "Courier New", Courier, monospace;
     background: #000;
     color: #bbffc1;
 }
+
+  .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 100%;
+            padding: 10px 12px;
+            border-bottom: 1px solid #88ff00;
+            background: #000;
+        }
+
+        .logo, #flogo{
+            color: #88ff00;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 20px;
+            color: #88ff00;
+            cursor: pointer;
+            position: relative;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .menu-toggle::before,
+        .menu-toggle::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0.7;
+        }
+
+        .menu-toggle::before {
+            color: #00ffea;
+            animation: glitch1 0.6s infinite;
+        }
+
+        .menu-toggle::after {
+            color: #ff008c;
+            animation: glitch2 0.6s infinite;
+        }
+
+        @keyframes glitch1 {
+            0% {
+                transform: translate(0);
+            }
+
+            20% {
+                transform: translate(-2px, 1px);
+            }
+
+            40% {
+                transform: translate(-1px, -1px);
+            }
+
+            60% {
+                transform: translate(2px, 0);
+            }
+
+            80% {
+                transform: translate(1px, -2px);
+            }
+
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        @keyframes glitch2 {
+            0% {
+                transform: translate(0);
+            }
+
+            20% {
+                transform: translate(2px, -1px);
+            }
+
+            40% {
+                transform: translate(1px, 1px);
+            }
+
+            60% {
+                transform: translate(-2px, 0);
+            }
+
+            80% {
+                transform: translate(-1px, 2px);
+            }
+
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            gap: 18px;
+        }
+
+        .nav-links a {
+            color: #bbffc1;
+            text-decoration: none;
+            transition: 0.2s;
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-links a:hover {
+            color: #88ff00;
+            text-shadow: 0 0 6px #88ff00;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0%;
+            height: 1px;
+            background: #88ff00;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a::before,
+        .nav-links a::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .nav-links a::before {
+            color: #00ffea;
+            animation: glitch1 0.6s infinite;
+        }
+
+        .nav-links a::after {
+            color: #ff008c;
+            animation: glitch2 0.6s infinite;
+        }
+
+        .system-right {
+            color: #777;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
 
 h1 {
     text-align: center;
@@ -88,6 +250,41 @@ h1 {
         flex-direction: row;
         text-align: left;
     }
+     .menu-toggle {
+                display: block;
+            }
+
+            .navbar {
+                position: relative;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 55px;
+                right: 10px;
+                width: 160px;
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+                padding: 10px;
+                background: #000;
+                border: 1px solid #88ff00;
+                border-radius: 6px;
+                z-index: 9999;
+            }
+
+
+            .nav-links.active {
+                display: flex;
+            }
+              #time {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                color: #777;
+                font-size: 13px;
+            }
 
 }
 
@@ -97,16 +294,18 @@ h1 {
 <body>
 
 <div class="navbar">
-    <button class="menu-btn" onclick="toggleMenu()">Menu</button>
-
-    <div class="nav-links" id="navLinks">
-        <a href="index.html">[Home]</a>
-        <a href="dashboard.html">[Dashboard]</a>
-        <a href="quiz.html">[Quiz]</a>
-        <a href="lab.html" class="active">[Laboratory]</a>
-        <a href="exam.html">[Exam]</a>
+        <div class="logo">
+            <img src="image/ionkno.gif" alt="logo">
+            <span>stxnOS</span>
+        </div>
+        <div class="menu-toggle" id="menuToggle" data-text="1">1</div>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" data-text=">index@">>index@</a>
+            <a href="dashboard.html" data-text=">dashboard@">>dashboard@</a>
+            <a href="outputs.html" data-text=">outputs@">>outputs@</a>
+        </div>
+        <div class="system-right" id="time"></div>
     </div>
-</div>
 
 <h1>>Laboratory@.$</h1>
 
@@ -154,7 +353,27 @@ h1 {
 
 </div>
 
-<script src="navbar.js"></script>
+<script>
+  function updateTime() {
+            document.getElementById("time").textContent =
+                new Date().toLocaleTimeString();
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+        
+         toggle.addEventListener("click", () => {
+            nav.classList.toggle("active");
+
+            if (toggle.textContent === "1") {
+                toggle.textContent = "0";
+                toggle.setAttribute("data-text", "0");
+            } else {
+                toggle.textContent = "1";
+                toggle.setAttribute("data-text", "1");
+            }
+        });
+</script>
 
 </body>
 </html>
