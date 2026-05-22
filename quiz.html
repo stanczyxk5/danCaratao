@@ -366,9 +366,29 @@ h1 {
     <img id="modalImg">
 </div>
 
-<script src="navbar.js"></script>
+
 
 <script>
+   function updateTime() {
+            document.getElementById("time").textContent =
+                new Date().toLocaleTimeString();
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+        
+         toggle.addEventListener("click", () => {
+            nav.classList.toggle("active");
+
+            if (toggle.textContent === "1") {
+                toggle.textContent = "0";
+                toggle.setAttribute("data-text", "0");
+            } else {
+                toggle.textContent = "1";
+                toggle.setAttribute("data-text", "1");
+            }
+        });
+  
 function openModal(card) {
     const img = card.querySelector("img").src;
     document.getElementById("modalImg").src = img;
